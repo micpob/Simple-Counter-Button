@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Simple Counter Button options</title>
+  <link rel="stylesheet" type="text/css" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>Simple Counter Button options:</h1>
+    <h2 id="notification_setter" class="inactive">Notify me when I reach: <input type="number" id="limit" size="6">
+      <label class="switch"> <input type="checkbox" id="limit_switch"> <span class="slider"></span> </label>
+      <span id="on_off_label">off</span>
+    </h2>
+    <h2>Counter steps by: <input type="number" id="step" size="6"> </h2>
+    <h2>Set new total: <input type="number" id="total" size="6"> <button id="set_new_total">Set</button> </h2>
+    <button id="reset">Reset counter</button> 
+    <br>
+    <button id="close">Close this page</button> 
+  </main>  
+</body>
+<script src="options.js"></script>
+</html>
