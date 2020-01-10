@@ -12,16 +12,16 @@
   "options_page": "options.html",
   "browser_action": {
     "default_icon": {
-      "16": "images/icon16.png",
-      "32": "images/icon32.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+      "16": "Res/Icons/icon16.png",
+      "32": "Res/Icons/icon32.png",
+      "48": "Res/Icons/icon48.png",
+      "128": "Res/Icons/icon128.png"
     },
     "icons": {
-      "16": "images/icon16.png",
-      "32": "images/icon32.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+      "32": "Res/Icons/icon32.png",
+      "16": "Res/Icons/icon16.png",
+      "48": "Res/Icons/icon48.png",
+      "128": "Res/Icons/icon128.png"
     }
   }
 }

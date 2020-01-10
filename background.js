@@ -26,7 +26,7 @@ chrome.browserAction.onClicked.addListener( () => {
         if (step > 0 && newTotal >= counter.limit || step < 0 && newTotal <= counter.limit) {
           const options = {
             type: 'basic',
-            iconUrl: 'images/icon48.png',
+            iconUrl: 'Res/Icons/icon48.png',
             title: 'Limit reached!',
             message: 'You have reached the set limit of ' + counter.limit
           }
