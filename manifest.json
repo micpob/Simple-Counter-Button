@@ -1,9 +1,15 @@
 {
   "name": "Simple Counter Button",
   "short_name": "SmplBtnCount",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Adds a counter controlled by a button to your Chrome Toolbar",
   "manifest_version": 2,
+  "icons": {
+    "32": "Res/Icons/icon32.png",
+    "16": "Res/Icons/icon16.png",
+    "48": "Res/Icons/icon48.png",
+    "128": "Res/Icons/icon128.png"
+  },
   "background": {
     "scripts": ["background.js"],
     "persistent": false
@@ -14,12 +20,6 @@
     "default_icon": {
       "16": "Res/Icons/icon16.png",
       "32": "Res/Icons/icon32.png",
-      "48": "Res/Icons/icon48.png",
-      "128": "Res/Icons/icon128.png"
-    },
-    "icons": {
-      "32": "Res/Icons/icon32.png",
-      "16": "Res/Icons/icon16.png",
       "48": "Res/Icons/icon48.png",
       "128": "Res/Icons/icon128.png"
     }
