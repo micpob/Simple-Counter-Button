@@ -27,6 +27,14 @@ Right click on the button and select “Options” to access the options page.
 </div>
 <br/>  
   
-Link to the extension in the Chrome Web Store: 
+&nbsp;  
+
+## Stack used:
+
+HTML, CSS, Javascript (Extensions APIs)
+
+&nbsp;
+  
+### Chrome Web Store link: 
 
 https://chrome.google.com/webstore/detail/simple-counter-button/ganimlbiphepcnkneheoamhohhmjpohp
