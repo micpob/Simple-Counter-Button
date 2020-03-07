@@ -27,8 +27,8 @@ chrome.browserAction.onClicked.addListener( () => {
           const options = {
             type: 'basic',
             iconUrl: 'Res/Icons/icon48.png',
-            title: 'Limit reached!',
-            message: 'You have reached the set limit of ' + counter.limit
+            title: chrome.i18n.getMessage('notification_title'),
+            message: chrome.i18n.getMessage('notification_message') + counter.limit
           }
           chrome.notifications.create('LimitReachedNotification', options)          
         }

@@ -37,7 +37,7 @@ button {
 
 #set_new_total {
   padding: 5px;
-  width: 50px;
+  max-width: 80px;
   font-size: 17px;
   background: rgb(0, 98, 255);
   margin-left: 4px;

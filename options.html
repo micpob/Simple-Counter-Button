@@ -10,17 +10,27 @@
 </head>
 <body>
   <main>
-    <h1>Simple Counter Button options:</h1>
-    <h2 id="notification_setter" class="inactive">Notify me when I reach: <input type="number" id="limit" size="6">
+    <h1 data-text="options_page_title"></h1>
+    <h2 id="notification_setter" class="inactive">
+      <span data-text="notification_option"></span>
+      <input type="number" id="limit" size="6">
       <label class="switch"> <input type="checkbox" id="limit_switch"> <span class="slider"></span> </label>
       <span id="on_off_label">off</span>
     </h2>
-    <h2>Counter steps by: <input type="number" id="step" size="6"> </h2>
-    <h2>Set new total: <input type="number" id="total" size="6"> <button id="set_new_total">Set</button> </h2>
-    <button id="reset">Reset counter</button> 
+    <h2>
+      <span data-text="step_option"></span>
+      <input type="number" id="step" size="6">
+    </h2>
+    <h2>
+      <span data-text="new_total_option"></span>
+      <input type="number" id="total" size="6">
+      <button data-text="new_total_button" id="set_new_total"></button> 
+    </h2>
+    <button data-text="reset_button" id="reset"></button> 
     <br>
-    <button id="close">Close this page</button> 
+    <button data-text="close_page_button" id="close"></button> 
   </main>  
 </body>
+<script src="setTexts.js"></script>
 <script src="options.js"></script>
 </html>

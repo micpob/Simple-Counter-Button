@@ -1,0 +1,35 @@
+{
+  "extension_name": {
+    "message": "Simple Counter Button"
+  },
+  "extension_description": {
+    "message": "Adds a counter controlled by a button to your Chrome Toolbar"
+  },
+  "notification_title": {
+    "message": "Limit reached!"
+  },
+  "notification_message": {
+    "message": "You have reached the set limit of "
+  },
+  "options_page_title": {
+    "message": "Simple Counter Button options:"
+  },
+  "notification_option": {
+    "message": "Notify me when I reach: "
+  },
+  "step_option": {
+    "message": "Counter steps by: "
+  },
+  "new_total_option": {
+    "message": "Set new total: "
+  },
+  "new_total_button": {
+    "message": "Set"
+  },
+  "reset_button": {
+    "message": "Reset counter"
+  },
+  "close_page_button": {
+    "message": "Close this page"
+  }
+}

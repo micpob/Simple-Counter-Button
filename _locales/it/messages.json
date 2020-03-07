@@ -1,0 +1,35 @@
+{
+  "extension_name": {
+    "message": "Bottone contatore"
+  },
+  "extension_description": {
+    "message": "Aggiunge un contatore a bottone alla Toolbar di Chrome"
+  },
+  "notification_title": {
+    "message": "Limite raggiunto!"
+  },
+  "notification_message": {
+    "message": "Hai raggiunto il limite di "
+  },
+  "options_page_title": {
+    "message": "Opzioni Bottone Contatore:"
+  },
+  "notification_option": {
+    "message": "Notifica al conteggio di: "
+  },
+  "step_option": {
+    "message": "Avanzamento contatore: "
+  },
+  "new_total_option": {
+    "message": "Cambia totale a: "
+  },
+  "new_total_button": {
+    "message": "Cambia"
+  },
+  "reset_button": {
+    "message": "Azzera contatore"
+  },
+  "close_page_button": {
+    "message": "Chiudi questa pagina"
+  }
+}
