@@ -1,0 +1,35 @@
+{
+  "extension_name": {
+    "message": "Botón contador"
+  },
+  "extension_description": {
+    "message": "Añade un contador controlado por un botón a tu barra de herramientas de Chrome"
+  },
+  "notification_title": {
+    "message": "¡Límite alcanzado!"
+  },
+  "notification_message": {
+    "message": "Has alcanzado el límite de "
+  },
+  "options_page_title": {
+    "message": "Opciones botón contador:"
+  },
+  "notification_option": {
+    "message": "Notificación al alcanzar: "
+  },
+  "step_option": {
+    "message": "Incremento contador: "
+  },
+  "new_total_option": {
+    "message": "Cambiar el total a: "
+  },
+  "new_total_button": {
+    "message": "Cambia"
+  },
+  "reset_button": {
+    "message": "Reiniciar contador"
+  },
+  "close_page_button": {
+    "message": "Cerrar esta página"
+  }
+}
