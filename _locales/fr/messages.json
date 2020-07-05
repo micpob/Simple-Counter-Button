@@ -1,0 +1,35 @@
+{
+  "extension_name": {
+    "message": "Bouton Compteur"
+  },
+  "extension_description": {
+    "message": "Ajoute un compteur contrôlé par un bouton à votre barre d'outils Chrome"
+  },
+  "notification_title": {
+    "message": "Limite atteinte!"
+  },
+  "notification_message": {
+    "message": "Vous avez atteint la limite de "
+  },
+  "options_page_title": {
+    "message": "Options de Bouton Compteur:"
+  },
+  "notification_option": {
+    "message": "Avertissez-moi lorsque j'arrive à: "
+  },
+  "step_option": {
+    "message": "Contre- avancement: "
+  },
+  "new_total_option": {
+    "message": "Établir un nouveau total: "
+  },
+  "new_total_button": {
+    "message": "Établir"
+  },
+  "reset_button": {
+    "message": "Réinitialiser le compteur"
+  },
+  "close_page_button": {
+    "message": "Fermer cette page"
+  }
+}
