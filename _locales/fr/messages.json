@@ -5,6 +5,9 @@
   "extension_description": {
     "message": "Ajoute un compteur contrôlé par un bouton à votre barre d'outils Chrome"
   },
+  "context_menu_reset_counter": {
+    "message": "Réinitialiser le compteur"
+  },
   "notification_title": {
     "message": "Limite atteinte!"
   },
@@ -28,6 +31,9 @@
   },
   "reset_button": {
     "message": "Réinitialiser le compteur"
+  },
+  "reset_message": {
+    "message": "Vous pouvez également réinitialiser en cliquant avec le bouton droit sur le bouton compteur et en sélectionnant 'Réinitialiser le compteur'."
   },
   "close_page_button": {
     "message": "Fermer cette page"

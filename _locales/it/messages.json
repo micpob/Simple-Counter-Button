@@ -5,6 +5,9 @@
   "extension_description": {
     "message": "Aggiunge un contatore a bottone alla Toolbar di Chrome"
   },
+  "context_menu_reset_counter": {
+    "message": "Azzerare contatore"
+  },
   "notification_title": {
     "message": "Limite raggiunto!"
   },
@@ -28,6 +31,9 @@
   },
   "reset_button": {
     "message": "Azzera contatore"
+  },
+  "reset_message": {
+    "message": "Puoi azzerare anche cliccando con il tasto destro del mouse sul bottone contatore e selezionando 'Azzerare contatore'."
   },
   "close_page_button": {
     "message": "Chiudi questa pagina"

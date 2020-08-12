@@ -5,6 +5,9 @@
   "extension_description": {
     "message": "Um contador controlado por um botão na sua barra de Chrome"
   },
+  "context_menu_reset_counter": {
+    "message": "Reiniciar contador"
+  },
   "notification_title": {
     "message": "Limite atingido!"
   },
@@ -28,6 +31,9 @@
   },
   "reset_button": {
     "message": "Reiniciar contador"
+  },
+  "reset_message": {
+    "message": "Você também pode reiniciar clicando com o botão direito do mouse no botão do contador e selecionando 'Reiniciar contador'."
   },
   "close_page_button": {
     "message": "Fechar esta página"

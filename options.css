@@ -48,7 +48,7 @@ button {
 }
 
 #reset {
-  margin: 15px 0;
+  margin: 15px 0 5px 0;
   background: darkgreen;
 }
 
@@ -59,7 +59,7 @@ button {
 #close {
   margin: 15px 0;
   background: darkred;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 #close:hover {
@@ -124,4 +124,11 @@ input:checked + .slider:before {
   -webkit-transform: translateX(13px);
   -ms-transform: translateX(13px);
   transform: translateX(13px);
+}
+
+#reset_message {
+  max-width: 350px;
+  margin: 0;
+  font-size: medium;
+  font-weight: 600;
 }

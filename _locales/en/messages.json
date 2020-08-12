@@ -5,6 +5,9 @@
   "extension_description": {
     "message": "Adds a counter controlled by a button to your Chrome Toolbar"
   },
+  "context_menu_reset_counter": {
+    "message": "Reset counter"
+  },
   "notification_title": {
     "message": "Limit reached!"
   },
@@ -28,6 +31,9 @@
   },
   "reset_button": {
     "message": "Reset counter"
+  },
+  "reset_message": {
+    "message": "You can also reset by right clicking the counter button and selecting 'Reset counter'."
   },
   "close_page_button": {
     "message": "Close this page"
