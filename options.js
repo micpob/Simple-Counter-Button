@@ -42,7 +42,6 @@ limit.addEventListener('change', () => {
 
 //Set counter step by
 const step = document.getElementById('step')
-
 chrome.storage.sync.get('step', (counter) => {  
   if (counter.step) {
     step.value = parseInt(counter.step)
@@ -58,7 +57,6 @@ step.addEventListener('change', () => {
 
 //Set new counter total
 const counterTotal = document.getElementById('total')
-
 document.getElementById('set_new_total').addEventListener('click', () => {
   chrome.storage.sync.set({'total': counterTotal.value})    
   chrome.browserAction.setBadgeText({'text': counterTotal.value})
@@ -67,8 +65,9 @@ document.getElementById('set_new_total').addEventListener('click', () => {
 
 //Reset button
 document.getElementById('reset').addEventListener('click', () => {
-  chrome.storage.sync.set({'total': '0'})    
-  chrome.browserAction.setBadgeText({'text': '0'})
+  chrome.storage.sync.set({'total': '0'}, () => {
+    chrome.browserAction.setBadgeText({'text': '0'})
+  })
 })
 
 //Close page button
