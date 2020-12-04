@@ -22,6 +22,10 @@ chrome.browserAction.onClicked.addListener( () => {
 
     newTotal = newTotal + step
 
+    if (counter.limit && counter.notification) {
+      sendNotification(step, newTotal, counter.limit)
+    }  
+
     chrome.storage.sync.set({'total': newTotal}, () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
       if (counter.limit && counter.notification) {

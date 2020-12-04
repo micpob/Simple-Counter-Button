@@ -14,7 +14,7 @@
     "128": "Res/Icons/icon128.png"
   },
   "background": {
-    "scripts": ["background.js", "contextMenu.js"],
+    "scripts": ["contextMenu.js", "notifications.js", "background.js"],
     "persistent": false
   },
   "permissions": ["storage", "notifications", "contextMenus"],
