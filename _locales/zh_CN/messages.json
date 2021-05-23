@@ -1,0 +1,41 @@
+{
+  "extension_name": {
+    "message": "计数器按钮"
+  },
+  "extension_description": {
+    "message": "点击按钮来计算"
+  },
+  "context_menu_reset_counter": {
+    "message": "复位"
+  },
+  "notification_title": {
+    "message": "已达到极限!"
+  },
+  "notification_message": {
+    "message": "你已经达到了极限。"
+  },
+  "options_page_title": {
+    "message": "设置"
+  },
+  "notification_option": {
+    "message": "当我到达时，会有通知。"
+  },
+  "step_option": {
+    "message": "柜台台阶由。"
+  },
+  "new_total_option": {
+    "message": "新的总数。"
+  },
+  "new_total_button": {
+    "message": "好的"
+  },
+  "reset_button": {
+    "message": "复位"
+  },
+  "reset_message": {
+    "message": "你也可以通过右键点击按钮并选择 '重置 '来重置。"
+  },
+  "close_page_button": {
+    "message": "关闭此页面"
+  }
+}
