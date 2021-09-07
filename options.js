@@ -1,3 +1,12 @@
+//Set texts in local language
+const objects = document.getElementsByTagName('*')
+for(let i = 0; i < objects.length; i++) {
+  if (objects[i].hasAttribute('data-text')) {
+    const textKey = objects[i].getAttribute('data-text')
+    objects[i].innerText = chrome.i18n.getMessage(textKey)
+  }
+}  
+
 //Notify user when limit is reached
 const notificationSetter = document.getElementById('notification_setter')
 const limit = document.getElementById('limit')
