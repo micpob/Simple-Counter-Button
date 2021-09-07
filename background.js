@@ -8,18 +8,6 @@ chrome.runtime.onStartup.addListener( () => {
   })
 })
 
-chrome.storage.onChanged.addListener((changes) => {
-  for(key in changes) {
-    if (key === 'step') {
-      let newStep = changes.step.newValue
-      newStep = -newStep
-      let sign = Math.sign(newStep)
-      sign = sign > -1 ? '+' : ''
-      chrome.contextMenus.update('simpleCounterButtonUndoLastClickContextMenu', {title: `${sign}${newStep}`});
-    }
-  }
-})
-
 chrome.browserAction.onClicked.addListener( () => {
   chrome.storage.sync.get(['total', 'step', 'limit', 'notification'], (counter) => {
     let step = 1

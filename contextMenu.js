@@ -55,3 +55,13 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
     })
   }
 })
+
+chrome.storage.onChanged.addListener((changes) => {
+  for(key in changes) {
+    if (key === 'step') {
+      const newStep = -changes.step.newValue
+      const sign = newStep >= 0 ? '+' : '' 
+      chrome.contextMenus.update('simpleCounterButtonUndoLastClickContextMenu', {title: `${sign}${newStep}`}, () => chrome.runtime.lastError);
+    }
+  }
+})
