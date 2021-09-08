@@ -1,24 +1,26 @@
 chrome.runtime.onStartup.addListener( () => {
   chrome.storage.sync.get('total', (counter) => {
-    let newTotal = 0
     if (counter.total) {
-      newTotal += parseInt(counter.total)
-    }
-    chrome.browserAction.setBadgeText({'text': newTotal.toString()})
+      chrome.browserAction.setBadgeText({'text': counter.total.toString()})
+    }  
   })
 })
 
 chrome.browserAction.onClicked.addListener( () => {
-  chrome.storage.sync.get(['total', 'step', 'limit', 'notification'], (counter) => {
-    let step = 1
-    if (counter.step) {
-      step = parseInt(counter.step)
+  chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
+    const step = counter.step
+    let newTotal = counter.total + step
+    if (!Number.isInteger(newTotal)) {
+      const digitsBeforePoint = Math.ceil(Math.log10(Math.floor(Math.abs(newTotal))+1))
+      const toPrecisionIndex = digitsBeforePoint + 1
+      const preciseTotal = newTotal.toPrecision(toPrecisionIndex)
+      newTotal = Math.trunc(preciseTotal * 10) / 10
     }
 
-    let newTotal = 0
-    if (counter.total) {
-      newTotal += parseInt(counter.total)
-    }
+    if (counter.notification) {
+      const limit = counter.limit
+      sendNotification(step, newTotal, limit)
+    }  
 
     newTotal = newTotal + step
 
@@ -39,18 +41,43 @@ chrome.runtime.onInstalled.addListener((details) => {
 
   switch (reason) {
      case 'install':
-      setUpContextMenus()
+      chrome.storage.sync.set({
+        "limit": 0,
+        "notification": false,
+        "step": 1,
+        "total": 0,
+      }, () => {
+        setUpContextMenus()
+      })
         break;
      case 'update':
-      chrome.storage.sync.get('total', (counter) => {
-        let newTotal = 0
-        if (counter.total) {
-          newTotal += parseInt(counter.total)
+      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
+        //console.log(counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number'))
+        let notification = counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number') ? counter.notification : false
+        let total = counter.total ? counter.total : 0
+        let step = counter.step ? counter.step : 1
+        let limit = counter.limit ? counter.limit : 0
+        if (typeof total == "string") { 
+          total = Math.trunc(total * 10) / 10 
+        } 
+        if (typeof step == "string") { 
+          step = Math.trunc(step * 10) / 10 
         }
-        chrome.browserAction.setBadgeText({'text': newTotal.toString()})
-      })
-      chrome.contextMenus.removeAll(() => {
-        setUpContextMenus()
+        if (typeof limit == "string") { 
+          if (limit.trim().length < 1 ) { notification = false }
+          limit = Math.trunc(limit * 10) / 10 
+        }
+        chrome.storage.sync.set({
+          "limit": limit,
+          "step": step,
+          "total": total,
+          "notification": notification,
+        }, () => {
+          chrome.browserAction.setBadgeText({'text': total.toString()})
+          chrome.contextMenus.removeAll(() => {
+            setUpContextMenus()
+          })
+        })
       })
         break;
      case 'chrome_update':

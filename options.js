@@ -21,18 +21,11 @@ chrome.storage.sync.get('notification', (counter) => {
   }
 })
 
-chrome.storage.sync.get('limit', (counter) => {  
-  if (counter.limit) {
-    limit.value = parseInt(counter.limit)
-  } else {
-    limitSwitch.checked = false
-    chrome.storage.sync.set({'notification': false})    
-    notificationSetter.classList.add('inactive')
-    onOffIndicator.innerHTML = 'off'
-  }
+chrome.storage.sync.get('limit', (counter) => {
+  limit.value = counter.limit
 })
 
-limitSwitch.addEventListener('change', e => {
+limitSwitch.addEventListener('change', (e) => {
   if (e.target.checked) {
     chrome.storage.sync.set({'notification': true})    
     notificationSetter.classList.remove('inactive')
@@ -45,36 +38,40 @@ limitSwitch.addEventListener('change', e => {
 })
 
 limit.addEventListener('change', () => {
-  chrome.storage.sync.set({'limit': limit.value})
+  const limitValue = Math.trunc(limit.value * 10) / 10
+  chrome.storage.sync.set({'limit': limitValue})
+  limit.value = limitValue
 })
-
 
 //Set counter step by
 const step = document.getElementById('step')
-chrome.storage.sync.get('step', (counter) => {  
-  if (counter.step) {
-    step.value = parseInt(counter.step)
-  } else {
-    step.value = 1
-  }  
+chrome.storage.sync.get('step', (counter) => {
+  step.value = counter.step
 })
 
-step.addEventListener('change', () => {
-  chrome.storage.sync.set({'step': step.value})    
+step.addEventListener('change', (e) => {
+  const stepValue = Math.trunc(step.value * 10) / 10
+  chrome.storage.sync.set({'step': stepValue})  
+  step.value = stepValue  
 })
-
 
 //Set new counter total
 const counterTotal = document.getElementById('total')
-document.getElementById('set_new_total').addEventListener('click', () => {
-  chrome.storage.sync.set({'total': counterTotal.value})    
-  chrome.browserAction.setBadgeText({'text': counterTotal.value})
+document.getElementById('set_new_total').addEventListener('click', (e) => {
+  const totalValue = Math.trunc(counterTotal.value * 10) / 10
+  chrome.storage.sync.set({'total': totalValue}, () => {
+    chrome.browserAction.setBadgeText({'text': totalValue.toString()})
+  })
+  counterTotal.value = totalValue 
+})
+
+//Sound
 })
 
 
 //Reset button
 document.getElementById('reset').addEventListener('click', () => {
-  chrome.storage.sync.set({'total': '0'}, () => {
+  chrome.storage.sync.set({'total': 0}, () => {
     chrome.browserAction.setBadgeText({'text': '0'})
   })
 })

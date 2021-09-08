@@ -1,12 +1,9 @@
 const setUpContextMenus = () => {
   chrome.contextMenus.removeAll(() => {
-    //undo last click
-    chrome.storage.sync.get(['total', 'step', 'limit', 'notification'], (counter) => {
-      //undo last click context menu item
-      let step = counter.step ? parseInt(counter.step) : 1
-      step = -step
-      let sign = Math.sign(step)
-      sign = sign > -1 ? '+' : '' 
+    chrome.storage.sync.get('step', (counter) => {
+      //revert click context menu item
+      const step = -counter.step
+      const sign = step >= 0 ? '+' : '' 
       const contextMenuUndoLastClickItem = {
         "id": "simpleCounterButtonUndoLastClickContextMenu",
         "title": `${sign}${step}`,
@@ -25,25 +22,24 @@ const setUpContextMenus = () => {
   })
 }
 
-
 chrome.contextMenus.onClicked.addListener((clickData) => {
   if (clickData.menuItemId == 'simpleCounterButtonResetCounterContextMenu') {
-    chrome.storage.sync.set({'total': '0'}, () => {
+    chrome.storage.sync.set({'total': 0}, () => {
       chrome.browserAction.setBadgeText({'text': '0'})
     })
   }
 
   if (clickData.menuItemId == 'simpleCounterButtonUndoLastClickContextMenu') {
     chrome.storage.sync.get(['total', 'step', 'limit', 'notification'], (counter) => {
-      const step = counter.step ? parseInt(counter.step) : 1
-      const InvertedStep = -step
+      const step = counter.step
+      let newTotal = counter.total - step
 
-      let newTotal = 0
-      if (counter.total) {
-        newTotal += parseInt(counter.total)
+      if (!Number.isInteger(newTotal)) {
+        const digitsBeforePoint = Math.ceil(Math.log10(Math.floor(Math.abs(newTotal))+1))
+        const toPrecisionIndex = digitsBeforePoint + 1
+        const preciseTotal = newTotal.toPrecision(toPrecisionIndex)
+        newTotal = Math.trunc(preciseTotal * 10) / 10
       }
-  
-      newTotal = newTotal + InvertedStep
 
       /* if (counter.limit && counter.notification) {
         sendNotification(step, newTotal, counter.limit)
