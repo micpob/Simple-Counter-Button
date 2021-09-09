@@ -29,6 +29,9 @@
   "new_total_button": {
     "message": "好的"
   },
+  "sound_option": {
+    "message": "声音。 "
+  },
   "reset_button": {
     "message": "复位"
   },

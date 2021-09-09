@@ -66,8 +66,39 @@ document.getElementById('set_new_total').addEventListener('click', (e) => {
 })
 
 //Sound
+const soundSetter = document.getElementById('sound_setter')
+const soundSwitch = document.getElementById('sound_switch')
+const soundOnOffIndicator = document.getElementById('on_off_label_sound')
+const soundVolumeContainer = document.getElementById('sound_volume_container')
+const volumeSlider = document.getElementById('sound_volume_slider')
+
+chrome.storage.sync.get(['sound', 'volume'], (counter) => {  
+  if (counter.sound) {
+    soundSetter.classList.remove('inactive')
+    soundSwitch.checked = true
+    soundOnOffIndicator.innerHTML = 'on'
+    soundVolumeContainer.style.visibility = 'visible'
+  }
+  volumeSlider.value = counter.volume ? counter.volume : 0.5
 })
 
+soundSwitch.addEventListener('change', (e) => {
+  if (e.target.checked) {
+    chrome.storage.sync.set({'sound': true})    
+    soundSetter.classList.remove('inactive')
+    soundOnOffIndicator.innerHTML = 'on'
+    soundVolumeContainer.style.visibility = 'visible'
+  } else {
+    chrome.storage.sync.set({'sound': false})    
+    soundSetter.classList.add('inactive')
+    soundOnOffIndicator.innerHTML = 'off'
+    soundVolumeContainer.style.visibility = 'hidden'
+  }
+})
+
+volumeSlider.addEventListener('input', (e) => {
+  chrome.storage.sync.set({'volume': volumeSlider.value})
+})
 
 //Reset button
 document.getElementById('reset').addEventListener('click', () => {

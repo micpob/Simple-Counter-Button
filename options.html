@@ -26,6 +26,17 @@
       <input type="number" id="total" size="6">
       <button data-text="new_total_button" id="set_new_total"></button> 
     </h2>
+    <h2 id="sound_setter" class="inactive">
+      <div>
+        <span data-text="sound_option"></span>
+        <label class="switch"> <input type="checkbox" id="sound_switch"> <span class="slider"></span> </label>
+        <span id="on_off_label_sound">off</span>
+      </div>
+      <div id="sound_volume_container">
+        <span id="sound_volume_label">&#128226;</span> 
+        <input id="sound_volume_slider" type="range" min="0" max="1" step="0.1" title="Sound volume"> 
+      </div>
+    </h2>
     <button data-text="reset_button" id="reset"></button> 
     <div id="reset_message" data-text="reset_message"></div>
     <br>

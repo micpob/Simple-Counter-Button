@@ -29,6 +29,9 @@
   "new_total_button": {
     "message": "Établir"
   },
+  "sound_option": {
+    "message": "Sonne: "
+  },
   "reset_button": {
     "message": "Réinitialiser le compteur"
   },

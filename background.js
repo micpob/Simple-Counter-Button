@@ -22,11 +22,12 @@ chrome.browserAction.onClicked.addListener( () => {
       sendNotification(step, newTotal, limit)
     }  
 
-    newTotal = newTotal + step
-
-    if (counter.limit && counter.notification) {
-      sendNotification(step, newTotal, counter.limit)
-    }  
+    //SOUND
+    if (counter.sound) {
+      const clickSound = new Audio(chrome.runtime.getURL('Res/Sounds/click_128.mp3'))
+      clickSound.volume = counter.volume
+      clickSound.play()
+    }
 
     chrome.storage.sync.set({'total': newTotal}, () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
@@ -46,6 +47,8 @@ chrome.runtime.onInstalled.addListener((details) => {
         "notification": false,
         "step": 1,
         "total": 0,
+        "sound": false,
+        "volume": 0.5
       }, () => {
         setUpContextMenus()
       })
@@ -57,6 +60,8 @@ chrome.runtime.onInstalled.addListener((details) => {
         let total = counter.total ? counter.total : 0
         let step = counter.step ? counter.step : 1
         let limit = counter.limit ? counter.limit : 0
+        let sound = counter.sound ? counter.sound : false
+        let volume = counter.volume ? counter.volume : 0.5
         if (typeof total == "string") { 
           total = Math.trunc(total * 10) / 10 
         } 
@@ -72,6 +77,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           "step": step,
           "total": total,
           "notification": notification,
+          "sound": sound,
+          "volume": volume
         }, () => {
           chrome.browserAction.setBadgeText({'text': total.toString()})
           chrome.contextMenus.removeAll(() => {

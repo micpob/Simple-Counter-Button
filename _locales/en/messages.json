@@ -29,6 +29,9 @@
   "new_total_button": {
     "message": "Set"
   },
+  "sound_option": {
+    "message": "Sounds: "
+  },
   "reset_button": {
     "message": "Reset counter"
   },

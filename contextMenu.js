@@ -30,7 +30,7 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
   }
 
   if (clickData.menuItemId == 'simpleCounterButtonUndoLastClickContextMenu') {
-    chrome.storage.sync.get(['total', 'step', 'limit', 'notification'], (counter) => {
+    chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
       const step = counter.step
       let newTotal = counter.total - step
 
@@ -44,6 +44,13 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
       /* if (counter.limit && counter.notification) {
         sendNotification(step, newTotal, counter.limit)
       } */
+
+      //SOUND
+      if (counter.sound) {
+        const clickSound = new Audio(chrome.runtime.getURL('Res/Sounds/click_128.mp3'))
+        clickSound.volume = counter.volume
+        clickSound.play()
+      }
   
       chrome.storage.sync.set({'total': newTotal}, () => {
         chrome.browserAction.setBadgeText({'text': newTotal.toString()})

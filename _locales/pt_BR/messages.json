@@ -29,6 +29,9 @@
   "new_total_button": {
     "message": "Mudar"
   },
+  "sound_option": {
+    "message": "Sons: "
+  },
   "reset_button": {
     "message": "Reiniciar contador"
   },
