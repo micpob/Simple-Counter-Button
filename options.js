@@ -97,7 +97,8 @@ soundSwitch.addEventListener('change', (e) => {
 })
 
 volumeSlider.addEventListener('input', (e) => {
-  chrome.storage.sync.set({'volume': volumeSlider.value})
+  const newVolume = parseFloat(volumeSlider.value)
+  chrome.storage.sync.set({'volume': newVolume})
 })
 
 //Reset button
