@@ -30,7 +30,7 @@
     "message": "Set"
   },
   "sound_option": {
-    "message": "Sounds: "
+    "message": "Sound: "
   },
   "reset_button": {
     "message": "Reset counter"
