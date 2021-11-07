@@ -27,9 +27,28 @@ chrome.storage.sync.get('limit', (counter) => {
 
 limitSwitch.addEventListener('change', (e) => {
   if (e.target.checked) {
-    chrome.storage.sync.set({'notification': true})    
-    notificationSetter.classList.remove('inactive')
-    onOffIndicator.innerHTML = 'on'
+    chrome.permissions.contains({
+      permissions: ['notifications']
+    }, (result) => {
+      if (result) {
+        //console.log('notifications permission already granted')
+      } else {
+        chrome.permissions.request({
+          permissions: ['notifications']
+        }, (granted) => {
+          if (granted) {
+            chrome.storage.sync.set({'notification': true})    
+            notificationSetter.classList.remove('inactive')
+            onOffIndicator.innerHTML = 'on'
+          } else {
+            e.target.checked = false
+            chrome.storage.sync.set({'notification': false})    
+            notificationSetter.classList.add('inactive')
+            onOffIndicator.innerHTML = 'off'
+          }
+        })
+      }
+    })
   } else {
     chrome.storage.sync.set({'notification': false})    
     notificationSetter.classList.add('inactive')
