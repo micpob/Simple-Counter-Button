@@ -124,6 +124,17 @@ volumeSlider.addEventListener('input', (e) => {
 document.getElementById('reset').addEventListener('click', () => {
   chrome.storage.sync.set({'total': 0}, () => {
     chrome.browserAction.setBadgeText({'text': '0'})
+    chrome.permissions.contains({permissions: ['notifications']}, (result) => {
+      if (result) {
+        chrome.notifications.getAll((items) => {
+          if (items) {
+            for (let key in items) {
+              chrome.notifications.clear(key)
+            }
+          }
+        })
+      }
+    })
   })
 })
 
