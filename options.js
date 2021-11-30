@@ -32,10 +32,11 @@ limitSwitch.addEventListener('change', (e) => {
     }, (result) => {
       if (result) {
         //console.log('notifications permission already granted')
+        chrome.storage.sync.set({'notification': true})    
+        notificationSetter.classList.remove('inactive')
+        onOffIndicator.innerHTML = 'on'
       } else {
-        chrome.permissions.request({
-          permissions: ['notifications']
-        }, (granted) => {
+        chrome.permissions.request({permissions: ['notifications']}, (granted) => {
           if (granted) {
             chrome.storage.sync.set({'notification': true})    
             notificationSetter.classList.remove('inactive')
