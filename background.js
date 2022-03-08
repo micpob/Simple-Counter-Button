@@ -31,6 +31,8 @@ chrome.browserAction.onClicked.addListener( () => {
 
     chrome.storage.sync.set({'total': newTotal}, () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
+      const newTimestamp = new Date().toLocaleString()
+      chrome.storage.sync.set({'timestamp': newTimestamp})
     })
   })
 })
@@ -48,13 +50,14 @@ chrome.runtime.onInstalled.addListener((details) => {
         "step": 1,
         "total": 0,
         "sound": false,
-        "volume": 0.5
+        "volume": 0.5,
+        "timestamp": ""
       }, () => {
         setUpContextMenus()
       })
         break;
      case 'update':
-      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
+      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp'], (counter) => {
         //console.log(counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number'))
         let notification = counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number') ? counter.notification : false
         let total = counter.total ? counter.total : 0
@@ -62,6 +65,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         let limit = counter.limit ? counter.limit : 0
         let sound = counter.sound ? counter.sound : false
         let volume = counter.volume ? counter.volume : 0.5
+        let timestamp = counter.timestamp ? counter.timestamp : ''
         if (typeof total == "string") { 
           total = Math.trunc(total * 10) / 10 
         } 
@@ -78,7 +82,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           "total": total,
           "notification": notification,
           "sound": sound,
-          "volume": volume
+          "volume": volume,
+          "timestamp": timestamp
         }, () => {
           chrome.browserAction.setBadgeText({'text': total.toString()})
           chrome.contextMenus.removeAll(() => {

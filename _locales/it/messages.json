@@ -8,6 +8,9 @@
   "context_menu_reset_counter": {
     "message": "Azzerare contatore"
   },
+  "context_menu_last_click_timestamp": {
+    "message": "Ultimo click: "
+  },
   "notification_title": {
     "message": "Limite raggiunto!"
   },
