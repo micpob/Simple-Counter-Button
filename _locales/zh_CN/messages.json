@@ -35,6 +35,9 @@
   "sound_option": {
     "message": "声音。 "
   },
+  "timestamp_option": {
+    "message": "显示最后一次点击的时间戳。"
+  },
   "reset_button": {
     "message": "复位"
   },

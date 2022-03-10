@@ -35,6 +35,9 @@
   "sound_option": {
     "message": "Sound: "
   },
+  "timestamp_option": {
+    "message": "Show last click timestamp: "
+  },
   "reset_button": {
     "message": "Reset counter"
   },

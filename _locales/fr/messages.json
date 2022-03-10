@@ -35,6 +35,9 @@
   "sound_option": {
     "message": "Sonne: "
   },
+  "timestamp_option": {
+    "message": "Afficher l'horodatage du dernier clic: "
+  },
   "reset_button": {
     "message": "Réinitialiser le compteur"
   },

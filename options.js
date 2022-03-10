@@ -121,6 +121,31 @@ volumeSlider.addEventListener('input', (e) => {
   chrome.storage.sync.set({'volume': newVolume})
 })
 
+//Timestamp
+const timeStampSetter = document.getElementById('timestamp_setter')
+const timeStampSwitch = document.getElementById('timestamp_switch')
+const timeStampOffIndicator = document.getElementById('on_off_label_timestamp')
+
+chrome.storage.sync.get(['showTimestamp'], (counter) => {  
+  if (counter.showTimestamp) {
+    timeStampSetter.classList.remove('inactive')
+    timeStampSwitch.checked = true
+    timeStampOffIndicator.innerHTML = 'on'
+  }
+})
+
+timeStampSwitch.addEventListener('change', (e) => {
+  if (e.target.checked) {
+    chrome.storage.sync.set({'showTimestamp': true})    
+    timeStampSetter.classList.remove('inactive')
+    timeStampOffIndicator.innerHTML = 'on'
+  } else {
+    chrome.storage.sync.set({'showTimestamp': false})    
+    timeStampSetter.classList.add('inactive')
+    timeStampOffIndicator.innerHTML = 'off'
+  }
+})
+
 //Reset button
 document.getElementById('reset').addEventListener('click', () => {
   chrome.storage.sync.set({'total': 0}, () => {

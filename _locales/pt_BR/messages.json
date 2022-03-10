@@ -35,6 +35,9 @@
   "sound_option": {
     "message": "Son: "
   },
+  "timestamp_option": {
+    "message": "Mostrar data e hora do último clique: "
+  },
   "reset_button": {
     "message": "Reiniciar contador"
   },

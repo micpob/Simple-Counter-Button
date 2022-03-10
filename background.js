@@ -7,7 +7,7 @@ chrome.runtime.onStartup.addListener( () => {
 })
 
 chrome.browserAction.onClicked.addListener( () => {
-  chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
+  chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'showTimestamp'], (counter) => {
     const step = counter.step
     let newTotal = counter.total + step
     if (!Number.isInteger(newTotal)) {
@@ -31,8 +31,10 @@ chrome.browserAction.onClicked.addListener( () => {
 
     chrome.storage.sync.set({'total': newTotal}, () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
-      const newTimestamp = new Date().toLocaleString()
-      chrome.storage.sync.set({'timestamp': newTimestamp})
+      //if (counter.showTimestamp) {
+        const newTimestamp = new Date().toLocaleString()
+        chrome.storage.sync.set({'timestamp': newTimestamp})
+      //}
     })
   })
 })
@@ -51,13 +53,14 @@ chrome.runtime.onInstalled.addListener((details) => {
         "total": 0,
         "sound": false,
         "volume": 0.5,
-        "timestamp": ""
+        "timestamp": "",
+        "showTimestamp": true
       }, () => {
         setUpContextMenus()
       })
         break;
      case 'update':
-      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp'], (counter) => {
+      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp', 'showTimestamp'], (counter) => {
         //console.log(counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number'))
         let notification = counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number') ? counter.notification : false
         let total = counter.total ? counter.total : 0
@@ -66,6 +69,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         let sound = counter.sound ? counter.sound : false
         let volume = counter.volume ? counter.volume : 0.5
         let timestamp = counter.timestamp ? counter.timestamp : ''
+        let showTimestamp = typeof counter.showTimestamp == 'boolean' ? counter.showTimestamp : true
         if (typeof total == "string") { 
           total = Math.trunc(total * 10) / 10 
         } 
@@ -83,7 +87,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           "notification": notification,
           "sound": sound,
           "volume": volume,
-          "timestamp": timestamp
+          "timestamp": timestamp,
+          "showTimestamp": showTimestamp
         }, () => {
           chrome.browserAction.setBadgeText({'text': total.toString()})
           chrome.contextMenus.removeAll(() => {

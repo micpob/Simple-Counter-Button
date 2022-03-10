@@ -35,6 +35,9 @@
   "sound_option": {
     "message": "Suono: "
   },
+  "timestamp_option": {
+    "message": "Mostra data e ora dell'ultimo click: "
+  },
   "reset_button": {
     "message": "Azzera contatore"
   },

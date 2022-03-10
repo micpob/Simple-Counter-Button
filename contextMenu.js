@@ -1,6 +1,6 @@
 const setUpContextMenus = () => {
   chrome.contextMenus.removeAll(() => {
-    chrome.storage.sync.get(['step', 'timestamp'], (counter) => {
+    chrome.storage.sync.get(['step', 'timestamp', 'showTimestamp'], (counter) => {
       //revert click context menu item
       const step = -counter.step
       const sign = step >= 0 ? '+' : '' 
@@ -20,12 +20,14 @@ const setUpContextMenus = () => {
       chrome.contextMenus.create(contextMenuCounterResetItem, () => chrome.runtime.lastError)
       
       //last click timestamp context menu item
-      const contextMenuLastClickTimestamp = {
-        "id": "simpleCounterButtonLastClickTimestampContextMenu",
-        "title": `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${counter.timestamp}`,
-        "contexts": ["browser_action"]
+      if (counter.showTimestamp) {
+        const contextMenuLastClickTimestamp = {
+          "id": "simpleCounterButtonLastClickTimestampContextMenu",
+          "title": `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${counter.timestamp}`,
+          "contexts": ["browser_action"]
+        }
+        chrome.contextMenus.create(contextMenuLastClickTimestamp, () => chrome.runtime.lastError)
       }
-      chrome.contextMenus.create(contextMenuLastClickTimestamp, () => chrome.runtime.lastError)
     })
   })
 }
@@ -49,7 +51,7 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
   }
 
   if (clickData.menuItemId == 'simpleCounterButtonUndoLastClickContextMenu') {
-    chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
+    chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'showTimestamp'], (counter) => {
       const step = counter.step
       let newTotal = counter.total - step
 
@@ -73,8 +75,10 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
   
       chrome.storage.sync.set({'total': newTotal}, () => {
         chrome.browserAction.setBadgeText({'text': newTotal.toString()})
-        const newTimestamp = new Date().toLocaleString()
-        chrome.storage.sync.set({'timestamp': newTimestamp})
+        //if (counter.showTimestamp) {
+          const newTimestamp = new Date().toLocaleString()
+          chrome.storage.sync.set({'timestamp': newTimestamp})
+        //} 
       })
     })
   }
@@ -89,8 +93,16 @@ chrome.storage.onChanged.addListener((changes) => {
     }
 
     if (key === 'timestamp') {
-      const newTimestamp = changes.timestamp.newValue
-      chrome.contextMenus.update('simpleCounterButtonLastClickTimestampContextMenu', {title: `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${newTimestamp}`}, () => chrome.runtime.lastError);
+      chrome.storage.sync.get('showTimestamp', (counter) => {
+        if (counter.showTimestamp) {
+          const newTimestamp = changes.timestamp.newValue
+          chrome.contextMenus.update('simpleCounterButtonLastClickTimestampContextMenu', {title: `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${newTimestamp}`}, () => chrome.runtime.lastError);
+        }
+      })  
+    }
+
+    if (key === 'showTimestamp') {
+      setUpContextMenus()    
     }
   }
 })
