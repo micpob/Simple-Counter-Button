@@ -7,7 +7,7 @@ chrome.runtime.onStartup.addListener( () => {
 })
 
 chrome.browserAction.onClicked.addListener( () => {
-  chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'showTimestamp'], (counter) => {
+  chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
     const step = counter.step
     let newTotal = counter.total + step
     if (!Number.isInteger(newTotal)) {
@@ -31,10 +31,8 @@ chrome.browserAction.onClicked.addListener( () => {
 
     chrome.storage.sync.set({'total': newTotal}, () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
-      //if (counter.showTimestamp) {
         const newTimestamp = new Date().toLocaleString()
         chrome.storage.sync.set({'timestamp': newTimestamp})
-      //}
     })
   })
 })

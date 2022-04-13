@@ -51,7 +51,7 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
   }
 
   if (clickData.menuItemId == 'simpleCounterButtonUndoLastClickContextMenu') {
-    chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'showTimestamp'], (counter) => {
+    chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
       const step = counter.step
       let newTotal = counter.total - step
 
@@ -75,10 +75,8 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
   
       chrome.storage.sync.set({'total': newTotal}, () => {
         chrome.browserAction.setBadgeText({'text': newTotal.toString()})
-        //if (counter.showTimestamp) {
           const newTimestamp = new Date().toLocaleString()
           chrome.storage.sync.set({'timestamp': newTimestamp})
-        //} 
       })
     })
   }
