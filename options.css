@@ -29,7 +29,7 @@ button {
   color: white;
   text-align: center;
   font-size: 23px;
-  padding: 20px;
+  padding: 12px;
   width: 100%;
   cursor: pointer;
   font-weight: 700;
@@ -45,6 +45,15 @@ button {
 
 #set_new_total:hover {
   background: rgb(60, 135, 255);
+}
+
+#chronology_button {
+  margin: 15px 0;
+  background: darkblue;
+}
+
+#chronology_button:hover {
+  background: blue;
 }
 
 #reset {

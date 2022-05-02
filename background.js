@@ -7,7 +7,7 @@ chrome.runtime.onStartup.addListener( () => {
 })
 
 chrome.browserAction.onClicked.addListener( () => {
-  chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
+  chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
     const step = counter.step
     let newTotal = counter.total + step
     if (!Number.isInteger(newTotal)) {
@@ -33,6 +33,11 @@ chrome.browserAction.onClicked.addListener( () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
         const newTimestamp = new Date().toLocaleString()
         chrome.storage.sync.set({'timestamp': newTimestamp})
+        if (counter.chronology) {
+          const chronology = counter.chronology
+          chronology.push(newTimestamp)
+          chrome.storage.sync.set({'chronology': chronology})
+        }
     })
   })
 })
@@ -52,7 +57,8 @@ chrome.runtime.onInstalled.addListener((details) => {
         "sound": false,
         "volume": 0.5,
         "timestamp": "",
-        "showTimestamp": true
+        "showTimestamp": true,
+        "chronology": []
       }, () => {
         setUpContextMenus()
       })
@@ -68,6 +74,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         let volume = counter.volume ? counter.volume : 0.5
         let timestamp = counter.timestamp ? counter.timestamp : ''
         let showTimestamp = typeof counter.showTimestamp == 'boolean' ? counter.showTimestamp : true
+        let chronology = counter.chronology ? counter.chronology : []
         if (typeof total == "string") { 
           total = Math.trunc(total * 10) / 10 
         } 
@@ -86,7 +93,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           "sound": sound,
           "volume": volume,
           "timestamp": timestamp,
-          "showTimestamp": showTimestamp
+          "showTimestamp": showTimestamp,
+          "chronology": chronology
         }, () => {
           chrome.browserAction.setBadgeText({'text': total.toString()})
           chrome.contextMenus.removeAll(() => {

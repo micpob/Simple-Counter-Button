@@ -1,0 +1,40 @@
+#refresh_button {
+  margin: 15px 0 5px 0;
+  background: darkgreen;
+}
+
+#refresh_button:hover {
+  background: green;
+}
+
+table {
+  border-collapse: collapse;
+  /* border:1px solid white; */
+  font-size: large;
+  /* padding: 1em; */
+}
+
+thead {
+  border-bottom: 1px solid white;
+}
+
+tbody {
+  /* border: 1px solid white; */
+}
+
+th, td {
+  padding: 0.6em;
+}
+
+td {
+  
+}
+
+.rank-cell {
+  border-right: 1px solid white;
+}
+
+.table-body-row {
+  border-bottom: 1px solid white;
+}
+

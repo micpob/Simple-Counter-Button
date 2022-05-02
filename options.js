@@ -146,6 +146,9 @@ timeStampSwitch.addEventListener('change', (e) => {
   }
 })
 
+//Open clicks chronology button
+document.getElementById('chronology_button').addEventListener('click', () => { chrome.tabs.create({ url: chrome.runtime.getURL('Chronology/chronology.html') }) })
+
 //Reset button
 document.getElementById('reset').addEventListener('click', () => {
   chrome.storage.sync.set({'total': 0}, () => {

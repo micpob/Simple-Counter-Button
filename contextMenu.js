@@ -51,7 +51,7 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
   }
 
   if (clickData.menuItemId == 'simpleCounterButtonUndoLastClickContextMenu') {
-    chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume'], (counter) => {
+    chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
       const step = counter.step
       let newTotal = counter.total - step
 
@@ -77,9 +77,19 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
         chrome.browserAction.setBadgeText({'text': newTotal.toString()})
           const newTimestamp = new Date().toLocaleString()
           chrome.storage.sync.set({'timestamp': newTimestamp})
+          if (counter.chronology) {
+            const chronology = counter.chronology
+            chronology.push(newTimestamp)
+            chrome.storage.sync.set({'chronology': chronology})
+          }
       })
     })
   }
+
+  if (clickData.menuItemId == 'simpleCounterButtonLastClickTimestampContextMenu') {
+    chrome.tabs.create({ url: chrome.runtime.getURL('Chronology/chronology.html') })
+  }
+
 })
 
 chrome.storage.onChanged.addListener((changes) => {
@@ -91,12 +101,12 @@ chrome.storage.onChanged.addListener((changes) => {
     }
 
     if (key === 'timestamp') {
+      const newTimestamp = changes.timestamp.newValue
       chrome.storage.sync.get('showTimestamp', (counter) => {
         if (counter.showTimestamp) {
-          const newTimestamp = changes.timestamp.newValue
           chrome.contextMenus.update('simpleCounterButtonLastClickTimestampContextMenu', {title: `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${newTimestamp}`}, () => chrome.runtime.lastError);
         }
-      })  
+      })
     }
 
     if (key === 'showTimestamp') {

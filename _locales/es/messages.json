@@ -38,6 +38,9 @@
   "timestamp_option": {
     "message": "Mostrar fecha y hora del último clic: "
   },
+  "chronology_button": {
+    "message": "Ver cronología"
+  },
   "reset_button": {
     "message": "Reiniciar contador"
   },
@@ -46,5 +49,8 @@
   },
   "close_page_button": {
     "message": "Cerrar esta página"
+  },
+  "chronology_page_title": {
+    "message": "Cronología de los clics"
   }
 }

@@ -38,6 +38,9 @@
   "timestamp_option": {
     "message": "显示最后一次点击的时间戳。"
   },
+  "chronology_button": {
+    "message": "见年表"
+  },
   "reset_button": {
     "message": "复位"
   },
@@ -46,5 +49,8 @@
   },
   "close_page_button": {
     "message": "关闭此页面"
+  },
+  "chronology_page_title": {
+    "message": "点击率年表"
   }
 }

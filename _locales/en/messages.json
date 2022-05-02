@@ -38,6 +38,9 @@
   "timestamp_option": {
     "message": "Show last click timestamp: "
   },
+  "chronology_button": {
+    "message": "See chronology"
+  },
   "reset_button": {
     "message": "Reset counter"
   },
@@ -46,5 +49,8 @@
   },
   "close_page_button": {
     "message": "Close this page"
+  },
+  "chronology_page_title": {
+    "message": "Clicks Chronology"
   }
 }
