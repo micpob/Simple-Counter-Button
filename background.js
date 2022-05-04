@@ -36,6 +36,7 @@ chrome.browserAction.onClicked.addListener( () => {
         if (counter.chronology) {
           const chronology = counter.chronology
           chronology.push(newTimestamp)
+          if (chronology.length > 100) chronology.shift()
           chrome.storage.sync.set({'chronology': chronology})
         }
     })
