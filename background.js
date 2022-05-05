@@ -65,7 +65,7 @@ chrome.runtime.onInstalled.addListener((details) => {
       })
         break;
      case 'update':
-      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp', 'showTimestamp'], (counter) => {
+      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp', 'showTimestamp', 'chronology'], (counter) => {
         //console.log(counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number'))
         let notification = counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number') ? counter.notification : false
         let total = counter.total ? counter.total : 0
