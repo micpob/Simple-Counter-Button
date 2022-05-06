@@ -7,6 +7,11 @@
   background: green;
 }
 
+#chronology_page_title {
+  text-align: center;
+  font-size: xx-large;
+}
+
 table {
   border-collapse: collapse;
   /* border:1px solid white; */
@@ -38,3 +43,14 @@ td {
   border-bottom: 1px solid white;
 }
 
+select {
+  cursor: pointer;
+  background-color: white;
+  color: rgb(255, 127, 39);
+  font-weight: 600;
+  width: 100%;
+  font-size: large;
+  border: 2px solid white;
+  border-radius: 4px;
+  text-align: center;
+}

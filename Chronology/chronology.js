@@ -10,10 +10,13 @@ for(let i = 0; i < objects.length; i++) {
 //Set data in table
 const setDataInTable = () => {
   const tableBody = document.getElementById('chronology_table_body')
+  //console.log(order)
   tableBody.innerHTML = ''
-  chrome.storage.sync.get('chronology', (counter) => {
+  chrome.storage.sync.get(['chronology', 'chronologyOrder'], (counter) => {
     if (counter.chronology) {
+      const order = counter.chronologyOrder ? counter.chronologyOrder : 'oldest'
       const chronologyArray = counter.chronology
+      if(order === 'newest') chronologyArray.reverse()
       chronologyArray.map((click, index) => { 
         const clickTimeData = click.split(',')
         const clickDate = clickTimeData[0]  
@@ -39,6 +42,12 @@ chrome.storage.onChanged.addListener((changes) => {
       //location.reload()    
     }
   }  
+})
+
+document.getElementById('clicks_display_order').addEventListener('change', (e) => { 
+  const newOrder = e.target.value
+  console.log(newOrder)
+  chrome.storage.sync.set({'chronologyOrder': newOrder}, () => { setDataInTable() })
 })
 
 setDataInTable()

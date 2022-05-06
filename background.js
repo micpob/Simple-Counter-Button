@@ -59,13 +59,14 @@ chrome.runtime.onInstalled.addListener((details) => {
         "volume": 0.5,
         "timestamp": "",
         "showTimestamp": true,
-        "chronology": []
+        "chronology": [],
+        "chronologyOrder": "oldest"
       }, () => {
         setUpContextMenus()
       })
         break;
      case 'update':
-      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp', 'showTimestamp', 'chronology'], (counter) => {
+      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp', 'showTimestamp', 'chronology', 'chronologyOrder'], (counter) => {
         //console.log(counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number'))
         let notification = counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number') ? counter.notification : false
         let total = counter.total ? counter.total : 0
@@ -76,6 +77,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         let timestamp = counter.timestamp ? counter.timestamp : ''
         let showTimestamp = typeof counter.showTimestamp == 'boolean' ? counter.showTimestamp : true
         let chronology = counter.chronology ? counter.chronology : []
+        let chronologyOrder = counter.chronologyOrder ? counter.chronologyOrder : 'oldest'
         if (typeof total == "string") { 
           total = Math.trunc(total * 10) / 10 
         } 
@@ -95,7 +97,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           "volume": volume,
           "timestamp": timestamp,
           "showTimestamp": showTimestamp,
-          "chronology": chronology
+          "chronology": chronology,
+          "chronologyOrder": chronologyOrder
         }, () => {
           chrome.browserAction.setBadgeText({'text': total.toString()})
           chrome.contextMenus.removeAll(() => {

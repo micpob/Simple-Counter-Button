@@ -52,5 +52,17 @@
   },
   "chronology_page_title": {
     "message": "点击率年表"
+  },
+  "chronology_page_oldest_to_newest": {
+    "message": "最早的到最新的"
+  },
+  "chronology_page_newest_to_oldest": {
+    "message": "最新的到最旧的"
+  },
+  "date": {
+    "message": "日期"
+  },
+  "time": {
+    "message": "一小时"
   }
 }

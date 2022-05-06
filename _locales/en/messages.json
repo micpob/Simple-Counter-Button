@@ -52,5 +52,17 @@
   },
   "chronology_page_title": {
     "message": "Clicks Chronology"
+  },
+  "chronology_page_oldest_to_newest": {
+    "message": "Oldest to newest"
+  },
+  "chronology_page_newest_to_oldest": {
+    "message": "Newest to oldest"
+  },
+  "date": {
+    "message": "Date"
+  },
+  "time": {
+    "message": "Time"
   }
 }

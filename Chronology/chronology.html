@@ -11,13 +11,17 @@
 </head>
 <body>
   <main>
-    <h1 data-text="chronology_page_title"></h1><!-- <button id="refresh_button">Refresh table</button> -->
+    <h1 id="chronology_page_title" data-text="chronology_page_title"></h1><!-- <button id="refresh_button">Refresh table</button> -->
+    <select name="clicks_display_order" id="clicks_display_order">
+      <option value="oldest" data-text="chronology_page_oldest_to_newest"></option>
+      <option value="newest" data-text="chronology_page_newest_to_oldest"></option>
+    </select>
     <table id="chronology_table">
       <thead>
         <tr>
           <th></th>
-          <th>Date</th>
-          <th>Time</th>
+          <th data-text="date"></th>
+          <th data-text="time"></th>
         </tr>
       </thead>
       <tbody id="chronology_table_body">
