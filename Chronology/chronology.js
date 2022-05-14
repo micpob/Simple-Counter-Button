@@ -44,9 +44,18 @@ chrome.storage.onChanged.addListener((changes) => {
   }  
 })
 
+//set selected order of chronology
+chrome.storage.sync.get('chronologyOrder', (counter) => {
+  if (counter.chronologyOrder) {
+    if (counter.chronologyOrder === 'newest') {
+      document.getElementById('clicks_display_order').value = 'newest'
+    }
+  }
+})  
+
 document.getElementById('clicks_display_order').addEventListener('change', (e) => { 
   const newOrder = e.target.value
-  console.log(newOrder)
+  //console.log(newOrder)
   chrome.storage.sync.set({'chronologyOrder': newOrder}, () => { setDataInTable() })
 })
 
