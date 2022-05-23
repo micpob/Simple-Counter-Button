@@ -29,7 +29,7 @@ chrome.browserAction.onClicked.addListener( () => {
       clickSound.play()
     }
 
-    chrome.storage.sync.set({'total': newTotal}, () => {
+/*     chrome.storage.sync.set({'total': newTotal}, () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
         const newTimestamp = new Date().toLocaleString()
         chrome.storage.sync.set({'timestamp': newTimestamp})
@@ -40,8 +40,22 @@ chrome.browserAction.onClicked.addListener( () => {
           chrome.storage.sync.set({'chronology': chronology})
         }
     })
+ */
+    const newTimestamp = new Date().toLocaleString()
+
+    console.log('newTotal', newTotal)
+
+    const chronology = counter.chronology
+    chronology.push(newTimestamp)
+    if (chronology.length > 100) chronology.shift()
+
+    chrome.storage.sync.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
+      chrome.browserAction.setBadgeText({'text': newTotal.toString()})
+    })
   })
 })
+
+
 
 chrome.runtime.onInstalled.addListener((details) => {
   /* const currentVersion = chrome.runtime.getManifest().version
