@@ -1,5 +1,5 @@
 chrome.runtime.onStartup.addListener( () => {
-  chrome.storage.sync.get('total', (counter) => {
+  chrome.storage.local.get('total', (counter) => {
     if (counter.total) {
       chrome.browserAction.setBadgeText({'text': counter.total.toString()})
     }  
@@ -7,7 +7,7 @@ chrome.runtime.onStartup.addListener( () => {
 })
 
 chrome.browserAction.onClicked.addListener( () => {
-  chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
+  chrome.storage.local.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
     const step = counter.step
     let newTotal = counter.total + step
     if (!Number.isInteger(newTotal)) {
@@ -29,27 +29,26 @@ chrome.browserAction.onClicked.addListener( () => {
       clickSound.play()
     }
 
-/*     chrome.storage.sync.set({'total': newTotal}, () => {
+/*     chrome.storage.local.set({'total': newTotal}, () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
         const newTimestamp = new Date().toLocaleString()
-        chrome.storage.sync.set({'timestamp': newTimestamp})
+        chrome.storage.local.set({'timestamp': newTimestamp})
         if (counter.chronology) {
           const chronology = counter.chronology
           chronology.push(newTimestamp)
           if (chronology.length > 100) chronology.shift()
-          chrome.storage.sync.set({'chronology': chronology})
+          chrome.storage.local.set({'chronology': chronology})
         }
     })
  */
     const newTimestamp = new Date().toLocaleString()
 
-    console.log('newTotal', newTotal)
+    //console.log('newTotal', newTotal)
+      const chronology = counter.chronology || []
+      chronology.push(newTimestamp)
+      if (chronology.length > 100) chronology.shift()
 
-    const chronology = counter.chronology
-    chronology.push(newTimestamp)
-    if (chronology.length > 100) chronology.shift()
-
-    chrome.storage.sync.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
+    chrome.storage.local.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
       chrome.browserAction.setBadgeText({'text': newTotal.toString()})
     })
   })
@@ -64,7 +63,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 
   switch (reason) {
      case 'install':
-      chrome.storage.sync.set({
+      chrome.storage.local.set({
         "limit": 0,
         "notification": false,
         "step": 1,
@@ -102,7 +101,7 @@ chrome.runtime.onInstalled.addListener((details) => {
           if (limit.trim().length < 1 ) { notification = false }
           limit = Math.trunc(limit * 10) / 10 
         }
-        chrome.storage.sync.set({
+        chrome.storage.local.set({
           "limit": limit,
           "step": step,
           "total": total,

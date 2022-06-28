@@ -13,7 +13,7 @@ const limit = document.getElementById('limit')
 const limitSwitch = document.getElementById('limit_switch')
 const onOffIndicator = document.getElementById('on_off_label')
 
-chrome.storage.sync.get('notification', (counter) => {  
+chrome.storage.local.get('notification', (counter) => {  
   if (counter.notification) {
     notificationSetter.classList.remove('inactive')
     limitSwitch.checked = true
@@ -21,7 +21,7 @@ chrome.storage.sync.get('notification', (counter) => {
   }
 })
 
-chrome.storage.sync.get('limit', (counter) => {
+chrome.storage.local.get('limit', (counter) => {
   limit.value = counter.limit
 })
 
@@ -32,18 +32,18 @@ limitSwitch.addEventListener('change', (e) => {
     }, (result) => {
       if (result) {
         //console.log('notifications permission already granted')
-        chrome.storage.sync.set({'notification': true})    
+        chrome.storage.local.set({'notification': true})    
         notificationSetter.classList.remove('inactive')
         onOffIndicator.innerHTML = 'on'
       } else {
         chrome.permissions.request({permissions: ['notifications']}, (granted) => {
           if (granted) {
-            chrome.storage.sync.set({'notification': true})    
+            chrome.storage.local.set({'notification': true})    
             notificationSetter.classList.remove('inactive')
             onOffIndicator.innerHTML = 'on'
           } else {
             e.target.checked = false
-            chrome.storage.sync.set({'notification': false})    
+            chrome.storage.local.set({'notification': false})    
             notificationSetter.classList.add('inactive')
             onOffIndicator.innerHTML = 'off'
           }
@@ -51,7 +51,7 @@ limitSwitch.addEventListener('change', (e) => {
       }
     })
   } else {
-    chrome.storage.sync.set({'notification': false})    
+    chrome.storage.local.set({'notification': false})    
     notificationSetter.classList.add('inactive')
     onOffIndicator.innerHTML = 'off'
   }
@@ -59,19 +59,19 @@ limitSwitch.addEventListener('change', (e) => {
 
 limit.addEventListener('change', () => {
   const limitValue = Math.trunc(limit.value * 10) / 10
-  chrome.storage.sync.set({'limit': limitValue})
+  chrome.storage.local.set({'limit': limitValue})
   limit.value = limitValue
 })
 
 //Set counter step by
 const step = document.getElementById('step')
-chrome.storage.sync.get('step', (counter) => {
+chrome.storage.local.get('step', (counter) => {
   step.value = counter.step
 })
 
 step.addEventListener('change', (e) => {
   const stepValue = Math.trunc(step.value * 10) / 10
-  chrome.storage.sync.set({'step': stepValue})  
+  chrome.storage.local.set({'step': stepValue})  
   step.value = stepValue  
 })
 
@@ -79,7 +79,7 @@ step.addEventListener('change', (e) => {
 const counterTotal = document.getElementById('total')
 document.getElementById('set_new_total').addEventListener('click', (e) => {
   const totalValue = Math.trunc(counterTotal.value * 10) / 10
-  chrome.storage.sync.set({'total': totalValue}, () => {
+  chrome.storage.local.set({'total': totalValue}, () => {
     chrome.browserAction.setBadgeText({'text': totalValue.toString()})
   })
   counterTotal.value = totalValue 
@@ -92,7 +92,7 @@ const soundOnOffIndicator = document.getElementById('on_off_label_sound')
 const soundVolumeContainer = document.getElementById('sound_volume_container')
 const volumeSlider = document.getElementById('sound_volume_slider')
 
-chrome.storage.sync.get(['sound', 'volume'], (counter) => {  
+chrome.storage.local.get(['sound', 'volume'], (counter) => {  
   if (counter.sound) {
     soundSetter.classList.remove('inactive')
     soundSwitch.checked = true
@@ -104,12 +104,12 @@ chrome.storage.sync.get(['sound', 'volume'], (counter) => {
 
 soundSwitch.addEventListener('change', (e) => {
   if (e.target.checked) {
-    chrome.storage.sync.set({'sound': true})    
+    chrome.storage.local.set({'sound': true})    
     soundSetter.classList.remove('inactive')
     soundOnOffIndicator.innerHTML = 'on'
     soundVolumeContainer.style.visibility = 'visible'
   } else {
-    chrome.storage.sync.set({'sound': false})    
+    chrome.storage.local.set({'sound': false})    
     soundSetter.classList.add('inactive')
     soundOnOffIndicator.innerHTML = 'off'
     soundVolumeContainer.style.visibility = 'hidden'
@@ -118,7 +118,7 @@ soundSwitch.addEventListener('change', (e) => {
 
 volumeSlider.addEventListener('input', (e) => {
   const newVolume = parseFloat(volumeSlider.value)
-  chrome.storage.sync.set({'volume': newVolume})
+  chrome.storage.local.set({'volume': newVolume})
 })
 
 //Timestamp
@@ -126,7 +126,7 @@ const timeStampSetter = document.getElementById('timestamp_setter')
 const timeStampSwitch = document.getElementById('timestamp_switch')
 const timeStampOffIndicator = document.getElementById('on_off_label_timestamp')
 
-chrome.storage.sync.get(['showTimestamp'], (counter) => {  
+chrome.storage.local.get(['showTimestamp'], (counter) => {  
   if (counter.showTimestamp) {
     timeStampSetter.classList.remove('inactive')
     timeStampSwitch.checked = true
@@ -136,11 +136,11 @@ chrome.storage.sync.get(['showTimestamp'], (counter) => {
 
 timeStampSwitch.addEventListener('change', (e) => {
   if (e.target.checked) {
-    chrome.storage.sync.set({'showTimestamp': true})    
+    chrome.storage.local.set({'showTimestamp': true})    
     timeStampSetter.classList.remove('inactive')
     timeStampOffIndicator.innerHTML = 'on'
   } else {
-    chrome.storage.sync.set({'showTimestamp': false})    
+    chrome.storage.local.set({'showTimestamp': false})    
     timeStampSetter.classList.add('inactive')
     timeStampOffIndicator.innerHTML = 'off'
   }
@@ -151,7 +151,7 @@ document.getElementById('chronology_button').addEventListener('click', () => { c
 
 //Reset button
 document.getElementById('reset').addEventListener('click', () => {
-  chrome.storage.sync.set({'total': 0}, () => {
+  chrome.storage.local.set({'total': 0}, () => {
     chrome.browserAction.setBadgeText({'text': '0'})
     chrome.permissions.contains({permissions: ['notifications']}, (result) => {
       if (result) {

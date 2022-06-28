@@ -1,6 +1,6 @@
 const setUpContextMenus = () => {
   chrome.contextMenus.removeAll(() => {
-    chrome.storage.sync.get(['step', 'timestamp', 'showTimestamp'], (counter) => {
+    chrome.storage.local.get(['step', 'timestamp', 'showTimestamp'], (counter) => {
       //revert click context menu item
       const step = -counter.step
       const sign = step >= 0 ? '+' : '' 
@@ -34,7 +34,7 @@ const setUpContextMenus = () => {
 
 chrome.contextMenus.onClicked.addListener((clickData) => {
   if (clickData.menuItemId == 'simpleCounterButtonResetCounterContextMenu') {
-    chrome.storage.sync.set({'total': 0}, () => {
+    chrome.storage.local.set({'total': 0}, () => {
       chrome.browserAction.setBadgeText({'text': '0'})
       chrome.permissions.contains({permissions: ['notifications']}, (result) => {
         if (result) {
@@ -51,7 +51,7 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
   }
 
   if (clickData.menuItemId == 'simpleCounterButtonUndoLastClickContextMenu') {
-    chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
+    chrome.storage.local.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
       const step = counter.step
       let newTotal = counter.total - step
 
@@ -73,25 +73,25 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
         clickSound.play()
       }
   
-      /* chrome.storage.sync.set({'total': newTotal}, () => {
+      /* chrome.storage.local.set({'total': newTotal}, () => {
         chrome.browserAction.setBadgeText({'text': newTotal.toString()})
           const newTimestamp = new Date().toLocaleString()
-          chrome.storage.sync.set({'timestamp': newTimestamp})
+          chrome.storage.local.set({'timestamp': newTimestamp})
           if (counter.chronology) {
             const chronology = counter.chronology
             chronology.push(newTimestamp)
             if (chronology.length > 100) chronology.shift()
-            chrome.storage.sync.set({'chronology': chronology})
+            chrome.storage.local.set({'chronology': chronology})
           }
       }) */
 
       const newTimestamp = new Date().toLocaleString()
-
-      const chronology = counter.chronology
+      
+      const chronology = counter.chronology || []
       chronology.push(newTimestamp)
       if (chronology.length > 100) chronology.shift()
   
-      chrome.storage.sync.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
+      chrome.storage.local.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
         chrome.browserAction.setBadgeText({'text': newTotal.toString()})
       })
 
@@ -114,7 +114,7 @@ chrome.storage.onChanged.addListener((changes) => {
 
     if (key === 'timestamp') {
       const newTimestamp = changes.timestamp.newValue
-      chrome.storage.sync.get('showTimestamp', (counter) => {
+      chrome.storage.local.get('showTimestamp', (counter) => {
         if (counter.showTimestamp) {
           chrome.contextMenus.update('simpleCounterButtonLastClickTimestampContextMenu', {title: `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${newTimestamp}`}, () => chrome.runtime.lastError);
         }

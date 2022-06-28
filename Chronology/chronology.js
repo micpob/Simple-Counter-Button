@@ -12,7 +12,7 @@ const setDataInTable = () => {
   const tableBody = document.getElementById('chronology_table_body')
   //console.log(order)
   tableBody.innerHTML = ''
-  chrome.storage.sync.get(['chronology', 'chronologyOrder'], (counter) => {
+  chrome.storage.local.get(['chronology', 'chronologyOrder'], (counter) => {
     if (counter.chronology) {
       const order = counter.chronologyOrder ? counter.chronologyOrder : 'oldest'
       const chronologyArray = counter.chronology
@@ -45,7 +45,7 @@ chrome.storage.onChanged.addListener((changes) => {
 })
 
 //set selected order of chronology
-chrome.storage.sync.get('chronologyOrder', (counter) => {
+chrome.storage.local.get('chronologyOrder', (counter) => {
   if (counter.chronologyOrder) {
     if (counter.chronologyOrder === 'newest') {
       document.getElementById('clicks_display_order').value = 'newest'
@@ -56,7 +56,7 @@ chrome.storage.sync.get('chronologyOrder', (counter) => {
 document.getElementById('clicks_display_order').addEventListener('change', (e) => { 
   const newOrder = e.target.value
   //console.log(newOrder)
-  chrome.storage.sync.set({'chronologyOrder': newOrder}, () => { setDataInTable() })
+  chrome.storage.local.set({'chronologyOrder': newOrder}, () => { setDataInTable() })
 })
 
 setDataInTable()
