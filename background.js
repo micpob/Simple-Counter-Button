@@ -79,9 +79,8 @@ chrome.runtime.onInstalled.addListener((details) => {
       })
         break;
      case 'update':
-      chrome.storage.sync.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp', 'showTimestamp', 'chronology', 'chronologyOrder'], (counter) => {
-        //console.log(counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number'))
-        let notification = counter.notification && (typeof counter.limit == 'string' && counter.limit.trim().length > 0 || typeof counter.limit == 'number') ? counter.notification : false
+      chrome.storage.local.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'timestamp', 'showTimestamp', 'chronology', 'chronologyOrder'], (counter) => {
+        let notification = counter.notification ? counter.notification : false
         let total = counter.total ? counter.total : 0
         let step = counter.step ? counter.step : 1
         let limit = counter.limit ? counter.limit : 0
@@ -91,16 +90,6 @@ chrome.runtime.onInstalled.addListener((details) => {
         let showTimestamp = typeof counter.showTimestamp == 'boolean' ? counter.showTimestamp : true
         let chronology = counter.chronology ? counter.chronology : []
         let chronologyOrder = counter.chronologyOrder ? counter.chronologyOrder : 'oldest'
-        if (typeof total == "string") { 
-          total = Math.trunc(total * 10) / 10 
-        } 
-        if (typeof step == "string") { 
-          step = Math.trunc(step * 10) / 10 
-        }
-        if (typeof limit == "string") { 
-          if (limit.trim().length < 1 ) { notification = false }
-          limit = Math.trunc(limit * 10) / 10 
-        }
         chrome.storage.local.set({
           "limit": limit,
           "step": step,
