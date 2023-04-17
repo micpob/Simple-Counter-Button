@@ -2,6 +2,8 @@ chrome.runtime.onStartup.addListener( () => {
   chrome.storage.local.get('total', (counter) => {
     if (counter.total) {
       chrome.browserAction.setBadgeText({'text': counter.total.toString()})
+    } else {
+      chrome.browserAction.setBadgeText({'text': '0'})
     }  
   })
 })
