@@ -9,6 +9,8 @@ chrome.runtime.onStartup.addListener( () => {
 })
 
 chrome.browserAction.onClicked.addListener( () => {
+  const newTimestamp = Date.now()
+
   chrome.storage.local.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
     const step = counter.step
     let newTotal = counter.total + step

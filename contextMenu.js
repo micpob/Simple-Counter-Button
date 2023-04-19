@@ -23,7 +23,7 @@ const setUpContextMenus = () => {
       if (counter.showTimestamp) {
         const contextMenuLastClickTimestamp = {
           "id": "simpleCounterButtonLastClickTimestampContextMenu",
-          "title": `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${counter.timestamp}`,
+          "title": `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${Number.isInteger(counter.timestamp) ? new Date(counter.timestamp).toLocaleString(): counter.timestamp}`,
           "contexts": ["browser_action"]
         }
         chrome.contextMenus.create(contextMenuLastClickTimestamp, () => chrome.runtime.lastError)
@@ -51,6 +51,7 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
   }
 
   if (clickData.menuItemId == 'simpleCounterButtonUndoLastClickContextMenu') {
+    const newTimestamp = Date.now()
     chrome.storage.local.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
       const step = counter.step
       let newTotal = counter.total - step
@@ -113,7 +114,8 @@ chrome.storage.onChanged.addListener((changes) => {
     }
 
     if (key === 'timestamp') {
-      const newTimestamp = changes.timestamp.newValue
+      let newTimestamp = changes.timestamp.newValue
+      newTimestamp = new Date(newTimestamp).toLocaleString()
       chrome.storage.local.get('showTimestamp', (counter) => {
         if (counter.showTimestamp) {
           chrome.contextMenus.update('simpleCounterButtonLastClickTimestampContextMenu', {title: `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${newTimestamp}`}, () => chrome.runtime.lastError);

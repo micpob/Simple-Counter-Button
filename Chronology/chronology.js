@@ -15,21 +15,36 @@ const setDataInTable = () => {
   chrome.storage.local.get(['chronology', 'chronologyOrder'], (counter) => {
     if (counter.chronology) {
       const order = counter.chronologyOrder ? counter.chronologyOrder : 'oldest'
-      const chronologyArray = counter.chronology
+      const chronologyArray = counter.chronology.slice(-100)
       if(order === 'newest') chronologyArray.reverse()
       chronologyArray.map((click, index) => { 
-        const clickTimeData = click.split(',')
-        const clickDate = clickTimeData[0]  
-        const clickHour = clickTimeData[1]
-        const tableRow = document.createElement('tr')
-        tableRow.classList.add('table-body-row')
-        const tableRowContent = `
-          <td class="rank-cell">${index + 1}.</td>
-          <td>${clickDate}</td>
-          <td>${clickHour}</td> 
-        `
-        tableRow.innerHTML = tableRowContent
-        tableBody.appendChild(tableRow)
+        if (Number.isInteger(click)) {
+          const timestamp = new Date(click)
+          const clickDate = timestamp.toLocaleDateString()  
+          const clickHour = timestamp.toLocaleTimeString()
+          const tableRow = document.createElement('tr')
+          tableRow.classList.add('table-body-row')
+          const tableRowContent = `
+            <td class="rank-cell">${index + 1}.</td>
+            <td>${clickDate}</td>
+            <td>${clickHour}</td> 
+          `
+          tableRow.innerHTML = tableRowContent
+          tableBody.appendChild(tableRow)
+        } else {
+          const clickTimeData = click.split(',')
+          const clickDate = clickTimeData[0]  
+          const clickHour = (typeof clickTimeData[1] === 'undefined') ? '' : clickTimeData[1]
+          const tableRow = document.createElement('tr')
+          tableRow.classList.add('table-body-row')
+          const tableRowContent = `
+            <td class="rank-cell">${index + 1}.</td>
+            <td>${clickDate}</td>
+            <td>${clickHour}</td> 
+          `
+          tableRow.innerHTML = tableRowContent
+          tableBody.appendChild(tableRow)
+        }
       })
     }
   })
