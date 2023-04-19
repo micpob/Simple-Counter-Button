@@ -74,23 +74,8 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
         clickSound.play()
       }
   
-      /* chrome.storage.local.set({'total': newTotal}, () => {
-        chrome.browserAction.setBadgeText({'text': newTotal.toString()})
-          const newTimestamp = new Date().toLocaleString()
-          chrome.storage.local.set({'timestamp': newTimestamp})
-          if (counter.chronology) {
-            const chronology = counter.chronology
-            chronology.push(newTimestamp)
-            if (chronology.length > 100) chronology.shift()
-            chrome.storage.local.set({'chronology': chronology})
-          }
-      }) */
-
-      const newTimestamp = new Date().toLocaleString()
-      
-      const chronology = counter.chronology || []
+      const chronology = counter.chronology.length < 1000 ? counter.chronology : counter.chronology.slice(-99)
       chronology.push(newTimestamp)
-      if (chronology.length > 100) chronology.shift()
   
       chrome.storage.local.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
         chrome.browserAction.setBadgeText({'text': newTotal.toString()})
