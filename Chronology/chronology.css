@@ -1,3 +1,10 @@
+main {
+}
+
+h1 {
+  margin-bottom: 15px;
+}
+
 #refresh_button {
   margin: 15px 0 5px 0;
   background: darkgreen;
@@ -32,7 +39,7 @@ th, td {
 }
 
 td {
-  
+  text-align: center;
 }
 
 .rank-cell {
@@ -49,8 +56,11 @@ select {
   color: rgb(255, 127, 39);
   font-weight: 600;
   width: 100%;
+  max-width: 300px;
   font-size: large;
   border: 2px solid white;
   border-radius: 4px;
+  display: flex;
   text-align: center;
+  margin: auto;
 }
