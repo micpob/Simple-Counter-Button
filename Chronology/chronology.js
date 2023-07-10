@@ -19,13 +19,34 @@ const timeDiff = (date1, date2) => {
     /* { d: 52, l: "weeks" } */
   ]
 
-  let result = ''
-  for (var i = 0; i < units.length; ++i) {
-    result = `${(diff % units[i].d)}${units[i].l} ${result}`
+  let result = []
+  for (let i = 0; i < units.length; i++) {
+    //result = `${(diff % units[i].d)}${units[i].l} ${result}`
+    result.push(diff % units[i].d)
     diff = Math.floor(diff / units[i].d)
   }
+
+  result.reverse()
+
+  const timeUnits = [
+    `${chrome.i18n.getMessage("days")}`,
+    `${chrome.i18n.getMessage("hours")}`,
+    `${chrome.i18n.getMessage("minutes")}`,
+    `${chrome.i18n.getMessage("seconds")}`,
+    `${chrome.i18n.getMessage("milliseconds")}`
+  ]
+
+  let timeInString = ''
+  for (let i = 0; i < result.length; i++) {
+    if (result[i] === 0 && timeInString.length === 0) {
+
+    } else {
+      timeInString = timeInString.length > 0 ? `${timeInString}, ${result[i]}${timeUnits[i]}` : `${result[i]}${timeUnits[i]}`
+    }
+    console.log(timeInString)
+  }
   
-  return result
+  return timeInString
 }
 
 //Set data in table
@@ -51,7 +72,7 @@ const setDataInTable = () => {
             <td class="rank-cell">${index + 1}.</td>
             <td>${clickDate}</td>
             <td>${clickHour}</td> 
-            <td>${interval}</td> 
+            <td class="interval-cell">${interval}</td> 
           `
           tableRow.innerHTML = tableRowContent
           tableBody.appendChild(tableRow)
