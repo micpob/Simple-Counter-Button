@@ -64,5 +64,23 @@
   },
   "time": {
     "message": "一小时"
+  },
+  "interval": {
+    "message": "上次点击后的时间"
+  },
+  "days": {
+    "message": "天"
+  },
+  "hours": {
+    "message": "小时"
+  },
+  "minutes": {
+    "message": "分钟"
+  },
+  "seconds": {
+    "message": "秒"
+  },
+  "milliseconds": {
+    "message": "毫秒"
   }
 }

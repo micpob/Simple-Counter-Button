@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extension_name__",
   "short_name": "SmplBtnCount",
-  "version": "2.6",
+  "version": "2.7",
   "description": "__MSG_extension_description__",
   "manifest_version": 2,
   "default_locale": "en",

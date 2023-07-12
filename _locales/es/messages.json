@@ -64,5 +64,23 @@
   },
   "time": {
     "message": "Hora"
+  },
+  "interval": {
+    "message": "Tiempo desde el clic anterior"
+  },
+  "days": {
+    "message": "d"
+  },
+  "hours": {
+    "message": "h"
+  },
+  "minutes": {
+    "message": "m"
+  },
+  "seconds": {
+    "message": "s"
+  },
+  "milliseconds": {
+    "message": "ms"
   }
 }
