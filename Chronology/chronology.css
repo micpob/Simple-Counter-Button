@@ -46,6 +46,10 @@ td {
   border-right: 1px solid white;
 }
 
+.interval-cell {
+  text-align: right;
+}
+
 .table-body-row {
   border-bottom: 1px solid white;
 }
