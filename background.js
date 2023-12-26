@@ -1,4 +1,5 @@
 chrome.runtime.onStartup.addListener( () => {
+  chrome.browserAction.setBadgeBackgroundColor({ color: '#0062ff' });
   chrome.storage.local.get('total', (counter) => {
     if (counter.total) {
       chrome.browserAction.setBadgeText({'text': counter.total.toString()})
@@ -64,6 +65,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         "chronology": [],
         "chronologyOrder": "oldest"
       }, () => {
+        chrome.browserAction.setBadgeBackgroundColor({ color: '#0062ff' });
         setUpContextMenus()
       })
         break;
@@ -92,6 +94,7 @@ chrome.runtime.onInstalled.addListener((details) => {
           "chronologyOrder": chronologyOrder
         }, () => {
           chrome.browserAction.setBadgeText({'text': total.toString()})
+          chrome.browserAction.setBadgeBackgroundColor({ color: '#0062ff' });
           chrome.contextMenus.removeAll(() => {
             setUpContextMenus()
           })
