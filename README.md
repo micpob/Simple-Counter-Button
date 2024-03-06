@@ -1,6 +1,6 @@
 # Simple Counter Button
 
-This was the first Chrome extension I developed. I needed a counter that could be incremented by clicking on a **button on the browser’s toolbar**, but surprisingly I couldn’t find such an extension in the Chrome Web Store, so I created this one.
+This was the first Chrome extension I developed. I needed a counter that could be incremented by clicking on a **button on the browser’s toolbar**, but surprisingly I couldn’t find such an extension in the Chrome Web Store.
 
 <br/>
 <div align="center" >
@@ -21,8 +21,8 @@ The counter also has a **notification functionality**: it is possible to set a l
 Right click on the button and select “Options” to access the options page.
 
 <br/>
-<div align="center" >
-  <img src="Docs/Screenshots/simple_counter_button_options_new.PNG" alt="Simple Counter Button screenshot options" width="400px">
+<div align="center" style="box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.4); max-width: 480px; margin: auto;">  
+  <img src="Docs/Screenshots/simple_counter_button_options_new.PNG" alt="Simple Counter Button screenshot options">
 </div>
 <br/>  
   
