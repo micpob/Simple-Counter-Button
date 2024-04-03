@@ -80,7 +80,7 @@ const counterTotal = document.getElementById('total')
 document.getElementById('set_new_total').addEventListener('click', (e) => {
   const totalValue = Math.trunc(counterTotal.value * 10) / 10
   chrome.storage.local.set({'total': totalValue}, () => {
-    chrome.browserAction.setBadgeText({'text': totalValue.toString()})
+    chrome.action.setBadgeText({'text': totalValue.toString()})
   })
   counterTotal.value = totalValue 
 })
@@ -152,7 +152,7 @@ document.getElementById('chronology_button').addEventListener('click', () => { c
 //Reset button
 document.getElementById('reset').addEventListener('click', () => {
   chrome.storage.local.set({'total': 0}, () => {
-    chrome.browserAction.setBadgeText({'text': '0'})
+    chrome.action.setBadgeText({'text': '0'})
     chrome.permissions.contains({permissions: ['notifications']}, (result) => {
       if (result) {
         chrome.notifications.getAll((items) => {

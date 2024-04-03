@@ -7,7 +7,7 @@ const setUpContextMenus = () => {
       const contextMenuUndoLastClickItem = {
         "id": "simpleCounterButtonUndoLastClickContextMenu",
         "title": `${sign}${step}`,
-        "contexts": ["browser_action"]
+        "contexts": ["action"]
       }
       chrome.contextMenus.create(contextMenuUndoLastClickItem, () => chrome.runtime.lastError)
 
@@ -15,7 +15,7 @@ const setUpContextMenus = () => {
       const contextMenuCounterResetItem = {
         "id": "simpleCounterButtonResetCounterContextMenu",
         "title": chrome.i18n.getMessage("context_menu_reset_counter"),
-        "contexts": ["browser_action"]
+        "contexts": ["action"]
       }
       chrome.contextMenus.create(contextMenuCounterResetItem, () => chrome.runtime.lastError)
       
@@ -23,8 +23,8 @@ const setUpContextMenus = () => {
       if (counter.showTimestamp) {
         const contextMenuLastClickTimestamp = {
           "id": "simpleCounterButtonLastClickTimestampContextMenu",
-          "title": `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${Number.isInteger(counter.timestamp) ? new Date(counter.timestamp).toLocaleString(): counter.timestamp}`,
-          "contexts": ["browser_action"]
+          "title": `${chrome.i18n.getMessage("context_menu_last_click_timestamp")} ${Number.isInteger(counter.timestamp) ? new Date(counter.timestamp).toLocaleString() : counter.timestamp}`,
+          "contexts": ["action"]
         }
         chrome.contextMenus.create(contextMenuLastClickTimestamp, () => chrome.runtime.lastError)
       }
@@ -32,10 +32,15 @@ const setUpContextMenus = () => {
   })
 }
 
+async function playSound(source, volume) {
+  await createOffscreen();
+  await chrome.runtime.sendMessage({ play: { source, volume } });
+}
+
 chrome.contextMenus.onClicked.addListener((clickData) => {
   if (clickData.menuItemId == 'simpleCounterButtonResetCounterContextMenu') {
     chrome.storage.local.set({'total': 0}, () => {
-      chrome.browserAction.setBadgeText({'text': '0'})
+      chrome.action.setBadgeText({'text': '0'})
       chrome.permissions.contains({permissions: ['notifications']}, (result) => {
         if (result) {
           chrome.notifications.getAll((items) => {
@@ -68,17 +73,22 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
       } */
 
       //SOUND
-      if (counter.sound) {
+      /* if (counter.sound) {
         const clickSound = new Audio(chrome.runtime.getURL('Res/Sounds/click_128.mp3'))
         clickSound.volume = counter.volume
         clickSound.play()
+      } */
+      if (counter.sound) {
+        const source = chrome.runtime.getURL('Res/Sounds/click_128.mp3')
+        const volume = counter.volume
+        playSound(source, volume)
       }
   
       const chronology = counter.chronology.length < 1000 ? counter.chronology : counter.chronology.slice(-99)
       chronology.push(newTimestamp)
   
       chrome.storage.local.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
-        chrome.browserAction.setBadgeText({'text': newTotal.toString()})
+        chrome.action.setBadgeText({'text': newTotal.toString()})
       })
 
     })

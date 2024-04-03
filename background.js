@@ -1,15 +1,15 @@
 chrome.runtime.onStartup.addListener( () => {
-  chrome.browserAction.setBadgeBackgroundColor({ color: '#0062ff' });
+  chrome.action.setBadgeBackgroundColor({ color: '#0062ff' });
   chrome.storage.local.get('total', (counter) => {
     if (counter.total) {
-      chrome.browserAction.setBadgeText({'text': counter.total.toString()})
+      chrome.action.setBadgeText({'text': counter.total.toString()})
     } else {
-      chrome.browserAction.setBadgeText({'text': '0'})
+      chrome.action.setBadgeText({'text': '0'})
     }
   })
 })
 
-chrome.browserAction.onClicked.addListener( () => {
+chrome.action.onClicked.addListener( () => {
   const newTimestamp = Date.now()
 
   chrome.storage.local.get(['total', 'step', 'limit', 'notification', 'sound', 'volume', 'chronology'], (counter) => {
@@ -28,23 +28,25 @@ chrome.browserAction.onClicked.addListener( () => {
     }  
 
     //SOUND
-    if (counter.sound) {
+    /* if (counter.sound) {
       const clickSound = new Audio(chrome.runtime.getURL('Res/Sounds/click_128.mp3'))
       clickSound.volume = counter.volume
       clickSound.play()
+    } */
+    if (counter.sound) {
+      const source = chrome.runtime.getURL('Res/Sounds/click_128.mp3')
+      const volume = counter.volume
+      playSound(source, volume)
     }
 
     const chronology = counter.chronology.length < 1000 ? counter.chronology : counter.chronology.slice(-99)
     chronology.push(newTimestamp)
 
     chrome.storage.local.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
-      chrome.browserAction.setBadgeText({'text': newTotal.toString()})
+      chrome.action.setBadgeText({'text': newTotal.toString()})
     })
-    
   })
 })
-
-
 
 chrome.runtime.onInstalled.addListener((details) => {
   /* const currentVersion = chrome.runtime.getManifest().version
@@ -65,7 +67,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         "chronology": [],
         "chronologyOrder": "oldest"
       }, () => {
-        chrome.browserAction.setBadgeBackgroundColor({ color: '#0062ff' });
+        chrome.action.setBadgeBackgroundColor({ color: '#0062ff' });
         setUpContextMenus()
       })
         break;
@@ -93,8 +95,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           "chronology": chronology,
           "chronologyOrder": chronologyOrder
         }, () => {
-          chrome.browserAction.setBadgeText({'text': total.toString()})
-          chrome.browserAction.setBadgeBackgroundColor({ color: '#0062ff' });
+          chrome.action.setBadgeText({'text': total.toString()})
+          chrome.action.setBadgeBackgroundColor({ color: '#0062ff' });
           chrome.contextMenus.removeAll(() => {
             setUpContextMenus()
           })
@@ -109,3 +111,18 @@ chrome.runtime.onInstalled.addListener((details) => {
         break;
   }
 })
+
+async function playSound(source, volume) {
+  await createOffscreen();
+  await chrome.runtime.sendMessage({ play: { source, volume } });
+}
+
+// Create offscreen document if one doesn't already exist
+async function createOffscreen() {
+  if (await chrome.offscreen.hasDocument()) return;
+  await chrome.offscreen.createDocument({
+      url: 'offscreen.html',
+      reasons: ['AUDIO_PLAYBACK'],
+      justification: 'testing'
+  });
+}

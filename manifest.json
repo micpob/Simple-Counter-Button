@@ -1,9 +1,9 @@
 {
   "name": "__MSG_extension_name__",
   "short_name": "SmplBtnCount",
-  "version": "2.9",
+  "version": "3.0",
   "description": "__MSG_extension_description__",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "default_locale": "en",
   "icons": {
     "16": "Res/Icons/icon16.png",
@@ -14,13 +14,12 @@
     "128": "Res/Icons/icon128.png"
   },
   "background": {
-    "scripts": ["contextMenu.js", "notifications.js", "background.js"],
-    "persistent": false
+    "service_worker": "bg-wrapper.js"
   },
-  "permissions": ["storage", "contextMenus"],
+  "permissions": ["storage", "contextMenus", "offscreen"],
   "optional_permissions": ["notifications"],
   "options_page": "options.html",
-  "browser_action": {
+  "action": {
     "default_icon": {
       "16": "Res/Icons/icon16.png",
       "24": "Res/Icons/icon24.png",
