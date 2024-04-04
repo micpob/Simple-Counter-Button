@@ -43,7 +43,7 @@ const timeDiff = (date1, date2) => {
     } else {
       timeInString = timeInString.length > 0 ? `${timeInString}, ${result[i]}${timeUnits[i]}` : `${result[i]}${timeUnits[i]}`
     }
-    console.log(timeInString)
+    //console.log(timeInString)
   }
   
   return timeInString
