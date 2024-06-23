@@ -1,0 +1,86 @@
+{
+  "extension_name": {
+    "message": "Einfache Zähler-Taste"
+  },
+  "extension_description": {
+    "message": "Fügt Ihrer Chrome-Symbolleiste einen Zähler hinzu, der über eine Schaltfläche gesteuert wird"
+  },
+  "context_menu_reset_counter": {
+    "message": "Zähler zurücksetzen"
+  },
+  "context_menu_last_click_timestamp": {
+    "message": "Letzter Klick: "
+  },
+  "notification_title": {
+    "message": "Limit erreicht!"
+  },
+  "notification_message": {
+    "message": "Sie haben die festgelegte Grenze von "
+  },
+  "options_page_title": {
+    "message": "Einfache Zählertasten-Optionen:"
+  },
+  "notification_option": {
+    "message": "Benachrichtigen Sie mich, wenn ich es erreiche: "
+  },
+  "step_option": {
+    "message": "Gegenschritte durch: "
+  },
+  "new_total_option": {
+    "message": "Neue Summe festlegen: "
+  },
+  "new_total_button": {
+    "message": "Set"
+  },
+  "sound_option": {
+    "message": "Ton: "
+  },
+  "timestamp_option": {
+    "message": "Zeitstempel des letzten Klicks anzeigen: "
+  },
+  "chronology_button": {
+    "message": "Siehe Chronologie"
+  },
+  "reset_button": {
+    "message": "Zähler zurücksetzen"
+  },
+  "reset_message": {
+    "message": "Sie können den Zähler auch zurücksetzen, indem Sie mit der rechten Maustaste auf die Zählertaste klicken und „Zähler zurücksetzen“ wählen."
+  },
+  "close_page_button": {
+    "message": "Diese Seite schließen"
+  },
+  "chronology_page_title": {
+    "message": "Klicks Chronologie"
+  },
+  "chronology_page_oldest_to_newest": {
+    "message": "Älteste bis neueste"
+  },
+  "chronology_page_newest_to_oldest": {
+    "message": "Neueste bis älteste"
+  },
+  "date": {
+    "message": "Datum"
+  },
+  "time": {
+    "message": "Stunde"
+  },
+  "interval": {
+    "message": "Zeit seit dem letzten Klick"
+  },
+  "days": {
+    "message": "d"
+  },
+  "hours": {
+    "message": "h"
+  },
+  "minutes": {
+    "message": "m"
+  },
+  "seconds": {
+    "message": "s"
+  },
+  "milliseconds": {
+    "message": "ms"
+  }
+}
