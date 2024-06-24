@@ -1,0 +1,86 @@
+{
+  "extension_name": {
+    "message": "Przycisk prostego licznika"
+  },
+  "extension_description": {
+    "message": "Dodaje licznik kontrolowany przez przycisk do paska narzędzi Chrome."
+  },
+  "context_menu_reset_counter": {
+    "message": "Reset licznika"
+  },
+  "context_menu_last_click_timestamp": {
+    "message": "Ostatnie kliknięcie: "
+  },
+  "notification_title": {
+    "message": "Limit osiągnięty!"
+  },
+  "notification_message": {
+    "message": "Osiągnięto ustawiony limit "
+  },
+  "options_page_title": {
+    "message": "Opcje przycisku prostego licznika:"
+  },
+  "notification_option": {
+    "message": "Powiadom mnie, gdy osiągnę: "
+  },
+  "step_option": {
+    "message": "Kroki licznika według: "
+  },
+  "new_total_option": {
+    "message": "Ustaw nową sumę: "
+  },
+  "new_total_button": {
+    "message": "Zestaw"
+  },
+  "sound_option": {
+    "message": "Dźwięk: "
+  },
+  "timestamp_option": {
+    "message": "Pokaż znacznik czasu ostatniego kliknięcia: "
+  },
+  "chronology_button": {
+    "message": "Zobacz chronologię"
+  },
+  "reset_button": {
+    "message": "Reset licznika"
+  },
+  "reset_message": {
+    "message": "Licznik można również zresetować, klikając prawym przyciskiem myszy przycisk licznika i wybierając opcję „Zresetuj licznik”."
+  },
+  "close_page_button": {
+    "message": "Zamknij tę stronę"
+  },
+  "chronology_page_title": {
+    "message": "Chronologia kliknięć"
+  },
+  "chronology_page_oldest_to_newest": {
+    "message": "Od najstarszego do najnowszego"
+  },
+  "chronology_page_newest_to_oldest": {
+    "message": "Od najnowszych do najstarszych"
+  },
+  "date": {
+    "message": "Data"
+  },
+  "time": {
+    "message": "Godzina"
+  },
+  "interval": {
+    "message": "Czas od poprzedniego kliknięcia"
+  },
+  "days": {
+    "message": "d"
+  },
+  "hours": {
+    "message": "h"
+  },
+  "minutes": {
+    "message": "m"
+  },
+  "seconds": {
+    "message": "s"
+  },
+  "milliseconds": {
+    "message": "ms"
+  }
+}
