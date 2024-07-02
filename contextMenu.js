@@ -28,6 +28,14 @@ const setUpContextMenus = () => {
         }
         chrome.contextMenus.create(contextMenuLastClickTimestamp, () => chrome.runtime.lastError)
       }
+
+      //set keyboard shortcut
+      const contextMenuSetkeyboardShortcut = {
+        "id": "simpleCounterButtonSetkeyboardShortcutContextMenu",
+        "title": chrome.i18n.getMessage("context_menu_set_keyboard_shortcut"),
+        "contexts": ["action"]
+      }
+      chrome.contextMenus.create(contextMenuSetkeyboardShortcut, () => chrome.runtime.lastError)
     })
   })
 }
@@ -96,6 +104,10 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
 
   if (clickData.menuItemId == 'simpleCounterButtonLastClickTimestampContextMenu') {
     chrome.tabs.create({ url: chrome.runtime.getURL('Chronology/chronology.html') })
+  }
+
+  if (clickData.menuItemId == 'simpleCounterButtonSetkeyboardShortcutContextMenu') {
+    chrome.tabs.create({ url: 'chrome://extensions/shortcuts' })
   }
 
 })

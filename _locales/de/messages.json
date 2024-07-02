@@ -82,5 +82,8 @@
   },
   "milliseconds": {
     "message": "ms"
+  },
+  "context_menu_set_keyboard_shortcut": {
+    "message": "Tastaturkürzel festlegen"
   }
 }

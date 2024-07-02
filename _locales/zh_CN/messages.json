@@ -82,5 +82,8 @@
   },
   "milliseconds": {
     "message": "毫秒"
+  },
+  "context_menu_set_keyboard_shortcut": {
+    "message": "设置键盘快捷键"
   }
 }
