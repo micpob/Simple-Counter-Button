@@ -136,7 +136,7 @@ input:checked + .slider:before {
 }
 
 #reset_message {
-  max-width: 350px;
+  max-width: 500px;
   margin: 0;
   font-size: medium;
   font-weight: 600;
