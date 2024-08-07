@@ -65,6 +65,15 @@ button {
   background: green;
 }
 
+#set_keyboard_shortcut_button {
+  margin: 15px 0 5px 0;
+  background: rgb(106, 0, 182);
+}
+
+#set_keyboard_shortcut_button:hover {
+  background: rgb(149, 0, 255);
+}
+
 #close {
   margin: 15px 0;
   background: darkred;

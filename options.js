@@ -167,5 +167,8 @@ document.getElementById('reset').addEventListener('click', () => {
   })
 })
 
+//Set keyboard shortcut button
+document.getElementById('set_keyboard_shortcut_button').addEventListener('click', () => { chrome.tabs.create({ url: 'chrome://extensions/shortcuts' }) })
+
 //Close page button
 document.getElementById('close').addEventListener('click', () => { window.close() })
