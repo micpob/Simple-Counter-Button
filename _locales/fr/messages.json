@@ -85,5 +85,11 @@
   },
   "context_menu_set_keyboard_shortcut": {
     "message": "Définir raccourci clavier"
+  },
+  "context_menu_toggle_sound_on_shortcut": {
+    "message": "Activer le son"
+  },
+  "context_menu_toggle_sound_off_shortcut": {
+    "message": "Désactiver le son"
   }
 }

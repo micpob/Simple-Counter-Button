@@ -85,5 +85,11 @@
   },
   "context_menu_set_keyboard_shortcut": {
     "message": "Imposta scorciatoia da tastiera"
+  },
+  "context_menu_toggle_sound_on_shortcut": {
+    "message": "Attivare suono"
+  },
+  "context_menu_toggle_sound_off_shortcut": {
+    "message": "Disattivare suono"
   }
 }

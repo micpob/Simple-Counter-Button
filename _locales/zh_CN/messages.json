@@ -85,5 +85,11 @@
   },
   "context_menu_set_keyboard_shortcut": {
     "message": "设置键盘快捷键"
+  },
+  "context_menu_toggle_sound_on_shortcut": {
+    "message": "打开声音"
+  },
+  "context_menu_toggle_sound_off_shortcut": {
+    "message": "关闭声音"
   }
 }

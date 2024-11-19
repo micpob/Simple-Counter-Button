@@ -1,6 +1,6 @@
 const setUpContextMenus = () => {
   chrome.contextMenus.removeAll(() => {
-    chrome.storage.local.get(['step', 'timestamp', 'showTimestamp'], (counter) => {
+    chrome.storage.local.get(['step', 'timestamp', 'showTimestamp', 'sound'], (counter) => {
       //revert click context menu item
       const step = -counter.step
       const sign = step >= 0 ? '+' : '' 
@@ -36,6 +36,14 @@ const setUpContextMenus = () => {
         "contexts": ["action"]
       }
       chrome.contextMenus.create(contextMenuSetkeyboardShortcut, () => chrome.runtime.lastError)
+      
+      //toggle sound on/off
+      const contextMenuToggleSoundShortcut = {
+        "id": "simpleCounterButtonToggleSoundShortcutContextMenu",
+        "title": `${counter.sound ? chrome.i18n.getMessage("context_menu_toggle_sound_off_shortcut") : chrome.i18n.getMessage("context_menu_toggle_sound_on_shortcut") }`,
+        "contexts": ["action"]
+      }
+      chrome.contextMenus.create(contextMenuToggleSoundShortcut, () => chrome.runtime.lastError)
     })
   })
 }
@@ -110,6 +118,16 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
     chrome.tabs.create({ url: 'chrome://extensions/shortcuts' })
   }
 
+  if (clickData.menuItemId == 'simpleCounterButtonToggleSoundShortcutContextMenu') {
+    chrome.storage.local.get(['sound'], (counter) => {
+      if (counter.sound) {
+        chrome.storage.local.set({'sound': false}) 
+      } else {
+        chrome.storage.local.set({'sound': true}) 
+      }
+    })
+  }
+
 })
 
 chrome.storage.onChanged.addListener((changes) => {
@@ -132,6 +150,11 @@ chrome.storage.onChanged.addListener((changes) => {
 
     if (key === 'showTimestamp') {
       setUpContextMenus()    
+    }
+
+    if (key === 'sound') {
+      const newSoundValue = changes.sound.newValue
+      chrome.contextMenus.update('simpleCounterButtonToggleSoundShortcutContextMenu', {title: `${newSoundValue ? chrome.i18n.getMessage("context_menu_toggle_sound_off_shortcut") : chrome.i18n.getMessage("context_menu_toggle_sound_on_shortcut") }`}, () => chrome.runtime.lastError);
     }
   }
 })

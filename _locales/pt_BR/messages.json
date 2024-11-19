@@ -85,5 +85,11 @@
   },
   "context_menu_set_keyboard_shortcut": {
     "message": "Definir atalho de teclado"
+  },
+  "context_menu_toggle_sound_on_shortcut": {
+    "message": "Ligar o som"
+  },
+  "context_menu_toggle_sound_off_shortcut": {
+    "message": "Desligar o som"
   }
 }

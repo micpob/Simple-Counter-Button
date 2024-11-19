@@ -85,5 +85,11 @@
   },
   "context_menu_set_keyboard_shortcut": {
     "message": "Ustaw skrót klawiaturowy"
+  },
+  "context_menu_toggle_sound_on_shortcut": {
+    "message": "Włącz dźwięk"
+  },
+  "context_menu_toggle_sound_off_shortcut": {
+    "message": "Wyłącz dźwięk"
   }
 }

@@ -85,5 +85,11 @@
   },
   "context_menu_set_keyboard_shortcut": {
     "message": "Set keyboard shortcut"
+  },
+  "context_menu_toggle_sound_on_shortcut": {
+    "message": "Turn sound on"
+  },
+  "context_menu_toggle_sound_off_shortcut": {
+    "message": "Turn sound off"
   }
 }

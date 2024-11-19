@@ -85,5 +85,11 @@
   },
   "context_menu_set_keyboard_shortcut": {
     "message": "Tastaturkürzel festlegen"
+  },
+  "context_menu_toggle_sound_on_shortcut": {
+    "message": "Ton einschalten"
+  },
+  "context_menu_toggle_sound_off_shortcut": {
+    "message": "Ton ausschalten"
   }
 }

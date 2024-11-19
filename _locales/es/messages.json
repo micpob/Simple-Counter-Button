@@ -85,5 +85,11 @@
   },
   "context_menu_set_keyboard_shortcut": {
     "message": "Establecer atajo de teclado"
+  },
+  "context_menu_toggle_sound_on_shortcut": {
+    "message": "Activar sonido"
+  },
+  "context_menu_toggle_sound_off_shortcut": {
+    "message": "Desactivar sonido"
   }
 }
