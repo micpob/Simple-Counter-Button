@@ -68,3 +68,10 @@ select {
   text-align: center;
   margin: auto;
 }
+
+#export_button {
+  background-color: green;
+  font-size: smaller;
+  font-weight: 500;
+  padding: 10px 8px;
+}
