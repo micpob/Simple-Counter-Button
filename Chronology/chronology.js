@@ -7,6 +7,10 @@ for(let i = 0; i < objects.length; i++) {
   }
 }
 
+//Set export table to csv file button title
+const exportButton = document.getElementById('export_button')
+exportButton.title = chrome.i18n.getMessage('export_chronology_table_to_csv_file_button_title')
+
 const timeDiff = (date1, date2) => {
   const difference = date1 > date2 ? date1 - date2 : date2 - date1
 
@@ -57,7 +61,7 @@ const setDataInTable = () => {
   chrome.storage.local.get(['chronology', 'chronologyOrder'], (counter) => {
     if (counter.chronology) {
       const order = counter.chronologyOrder ? counter.chronologyOrder : 'oldest'
-      const chronologyArray = counter.chronology.slice(-100)
+      const chronologyArray = counter.chronology.slice(-200)
       if(order === 'newest') chronologyArray.reverse()
       chronologyArray.map((click, index, array) => { 
         if (Number.isInteger(click)) {

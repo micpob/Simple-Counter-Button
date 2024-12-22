@@ -91,5 +91,8 @@
   },
   "context_menu_toggle_sound_off_shortcut": {
     "message": "关闭声音"
+  },
+  "export_chronology_table_to_csv_file_button_title": {
+    "message": "将表格导出为 csv 文件"
   }
 }

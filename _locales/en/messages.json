@@ -91,5 +91,8 @@
   },
   "context_menu_toggle_sound_off_shortcut": {
     "message": "Turn sound off"
+  },
+  "export_chronology_table_to_csv_file_button_title": {
+    "message": "Export table to csv file"
   }
 }
