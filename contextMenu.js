@@ -100,7 +100,7 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
         playSound(source, volume)
       }
   
-      const chronology = counter.chronology.length < 1000 ? counter.chronology : counter.chronology.slice(-99)
+      const chronology = counter.chronology.length < 1000 ? counter.chronology : counter.chronology.slice(-199)
       chronology.push(newTimestamp)
   
       chrome.storage.local.set({'total': newTotal, 'timestamp': newTimestamp, 'chronology': chronology}, () => {
