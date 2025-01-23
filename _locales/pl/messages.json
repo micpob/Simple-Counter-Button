@@ -94,5 +94,8 @@
   },
   "export_chronology_table_to_csv_file_button_title": {
     "message": "Eksport tabeli do pliku csv"
+  },
+  "context_menu_my_other_extensions": {
+    "message": "Moje inne rozszerzenia"
   }
 }

@@ -43,7 +43,16 @@ const setUpContextMenus = () => {
         "title": `${counter.sound ? chrome.i18n.getMessage("context_menu_toggle_sound_off_shortcut") : chrome.i18n.getMessage("context_menu_toggle_sound_on_shortcut") }`,
         "contexts": ["action"]
       }
-      chrome.contextMenus.create(contextMenuToggleSoundShortcut, () => chrome.runtime.lastError)
+      chrome.contextMenus.create(contextMenuToggleSoundShortcut, () => chrome.runtime.lastError)     
+     
+      //Link to other extensions
+      const contextMenuMyOtherExtensions = {
+        "id": "myOtherExtensions",
+        "title": chrome.i18n.getMessage("context_menu_my_other_extensions"),
+        "contexts": ["action"]
+      }
+      chrome.contextMenus.create(contextMenuMyOtherExtensions, () => chrome.runtime.lastError)
+
     })
   })
 }
@@ -126,6 +135,10 @@ chrome.contextMenus.onClicked.addListener((clickData) => {
         chrome.storage.local.set({'sound': true}) 
       }
     })
+  }
+
+  if (clickData.menuItemId == 'myOtherExtensions') {
+    chrome.tabs.create({ url: 'https://chromewebstore.google.com/search/micpob' })
   }
 
 })
