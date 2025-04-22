@@ -28,12 +28,12 @@ Right click on the button and select “Options” to access the options page.
   
 &nbsp;  
 
-## Stack used:
+### Stack used:
 
 HTML, CSS, Javascript (Extensions APIs)
 
 &nbsp;
   
-### Chrome Web Store link: 
+### Install here: 
 
-https://chrome.google.com/webstore/detail/simple-counter-button/ganimlbiphepcnkneheoamhohhmjpohp
+<a href="https://chrome.google.com/webstore/detail/simple-counter-button/ganimlbiphepcnkneheoamhohhmjpohp"><img src="Docs/screenshots/chrome-web-store-logo-large.png" alt="Chrome web store button" width="250px" ></a>
