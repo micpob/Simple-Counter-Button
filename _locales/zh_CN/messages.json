@@ -97,5 +97,8 @@
   },
   "context_menu_my_other_extensions": {
     "message": "★★ 我的其他 Chrome 扩展程序 ★★"
+  },
+  "reset_chronology_button": {
+    "message": "重置时间顺序"
   }
 }

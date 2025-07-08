@@ -97,5 +97,8 @@
   },
   "context_menu_my_other_extensions": {
     "message": "★★ Meine anderen Erweiterungen ★★"
+  },
+  "reset_chronology_button": {
+    "message": "Chronologie zurücksetzen"
   }
 }
