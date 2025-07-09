@@ -31,7 +31,6 @@ limitSwitch.addEventListener('change', (e) => {
       permissions: ['notifications']
     }, (result) => {
       if (result) {
-        //console.log('notifications permission already granted')
         chrome.storage.local.set({'notification': true})    
         notificationSetter.classList.remove('inactive')
         onOffIndicator.innerHTML = 'on'

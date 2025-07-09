@@ -1,18 +1,7 @@
-main {
-}
-
 h1 {
   margin-bottom: 15px;
 }
 
-#refresh_button {
-  margin: 15px 0 5px 0;
-  background: darkgreen;
-}
-
-#refresh_button:hover {
-  background: green;
-}
 
 #chronology_page_title {
   text-align: center;
@@ -21,17 +10,11 @@ h1 {
 
 table {
   border-collapse: collapse;
-  /* border:1px solid white; */
   font-size: large;
-  /* padding: 1em; */
 }
 
 thead {
   border-bottom: 1px solid white;
-}
-
-tbody {
-  /* border: 1px solid white; */
 }
 
 th, td {

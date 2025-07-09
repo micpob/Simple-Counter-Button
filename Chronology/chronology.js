@@ -47,7 +47,6 @@ const timeDiff = (date1, date2) => {
     } else {
       timeInString = timeInString.length > 0 ? `${timeInString}, ${result[i]}${timeUnits[i]}` : `${result[i]}${timeUnits[i]}`
     }
-    //console.log(timeInString)
   }
   
   return timeInString
@@ -56,14 +55,13 @@ const timeDiff = (date1, date2) => {
 //Set data in table
 const setDataInTable = () => {
   const tableBody = document.getElementById('chronology_table_body')
-  //console.log(order)
   tableBody.innerHTML = ''
   chrome.storage.local.get(['chronology', 'chronologyOrder'], (counter) => {
     if (counter.chronology) {
       const order = counter.chronologyOrder ? counter.chronologyOrder : 'oldest'
       const chronologyArray = counter.chronology.slice(-200)
       if(order === 'newest') chronologyArray.reverse()
-      chronologyArray.map((click, index, array) => { 
+      chronologyArray.map((click, index, array) => {
         if (index === chronologyArray.length - 1) {
           document.getElementById('reset_chronology_button_container').style.visibility = 'visible'
         }
@@ -107,7 +105,6 @@ chrome.storage.onChanged.addListener((changes) => {
   for(key in changes) {
     if (key === 'chronology') {
       setDataInTable()
-      //location.reload()    
     }
   }  
 })
@@ -123,7 +120,6 @@ chrome.storage.local.get('chronologyOrder', (counter) => {
 
 document.getElementById('clicks_display_order').addEventListener('change', (e) => { 
   const newOrder = e.target.value
-  //console.log(newOrder)
   chrome.storage.local.set({'chronologyOrder': newOrder}, () => { setDataInTable() })
 })
 

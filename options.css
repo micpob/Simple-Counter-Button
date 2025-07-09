@@ -161,30 +161,14 @@ input:checked + .slider:before {
 }
 
 #sound_volume_slider {
-  /* -webkit-appearance: none; */
-  /* margin-left: 8px; */
   width: 100px;
   height: 5px;
   cursor: pointer;
   background: rgb(0, 98, 255);
-  /* background: gray;
-  outline: none;
-  border-radius: 4px;
-  opacity: 0.7; */
 }
 
 #sound_volume_slider:hover {
   background: rgb(60, 135, 255);
-}
-
-#sound_volume_slider::-webkit-slider-thumb {
-  /* -webkit-appearance: none;
-  appearance: none;
-  width: 11px;
-  height: 11px;
-  border-radius: 5px;
-  background: lightgray;
-  border: 1px solid gray; */
 }
 
 #sound_volume_label {
