@@ -144,7 +144,7 @@ input:checked + .slider:before {
   transform: translateX(13px);
 }
 
-#reset_message {
+#reset_message, #access_chronology_message {
   max-width: 500px;
   margin: 0;
   font-size: medium;

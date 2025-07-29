@@ -101,5 +101,7 @@
   "reset_chronology_button": {
     "message": "Reset chronology"
   },
+  "access_chronology_message": {
+    "message": "You can also see the chronology by right clicking the counter button and clicking on the last click timestamp."
   }
 }

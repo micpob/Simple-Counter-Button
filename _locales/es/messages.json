@@ -100,5 +100,8 @@
   },
   "reset_chronology_button": {
     "message": "Reiniciar cronología"
+  },
+  "access_chronology_message": {
+    "message": "También puedes ver la cronología haciendo clic con el botón derecho del ratón en el contador y luego en la casilla del último clic."
   }
 }

@@ -100,5 +100,8 @@
   },
   "reset_chronology_button": {
     "message": "Zresetuj chronologię"
+  },
+  "access_chronology_message": {
+    "message": "Historię można również wyświetlić, klikając prawym przyciskiem myszy licznik, a następnie pole ostatniego kliknięcia."
   }
 }
