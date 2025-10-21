@@ -22,7 +22,7 @@ Right click on the button and select “Options” to access the options page.
 
 <br/>
 <div align="center" style="box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.4); max-width: 480px; margin: auto;">  
-  <img src="Docs/Screenshots/simple_counter_button_options_new.PNG" alt="Simple Counter Button screenshot options">
+  <img src="Docs/Screenshots/simple_counter_button_options_new.png" alt="Simple Counter Button screenshot options">
 </div>
 <br/>  
   
@@ -36,4 +36,4 @@ HTML, CSS, Javascript (Extensions APIs)
   
 ### Install here: 
 
-<a href="https://chrome.google.com/webstore/detail/simple-counter-button/ganimlbiphepcnkneheoamhohhmjpohp"><img src="Docs/screenshots/chrome-web-store-logo-large.png" alt="Chrome web store button" width="250px" ></a>
+<a href="https://chrome.google.com/webstore/detail/simple-counter-button/ganimlbiphepcnkneheoamhohhmjpohp"><img src="Docs/Screenshots/chrome-web-store-logo-large.png" alt="Chrome web store button" width="250px" ></a>
